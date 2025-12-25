@@ -1,8 +1,8 @@
 {
-  "name": "@kelvdra/bails",
+  "name": "@kelvdra/baileys",
   "type": "module",
-  "version": "1.4.029",
-  "description": "WhatsApp API by Kelvdra",
+  "version": "1.0.0",
+  "description": "baileys fork whiskeysockets modified by kelvdra",
   "keywords": [
     "baileys",
     "baileys-mod",
