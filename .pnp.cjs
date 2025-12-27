@@ -40,6 +40,7 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/parser", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.42.0"],\
           ["@whiskeysockets/eslint-config", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:1.0.0"],\
           ["async-mutex", "npm:0.5.0"],\
+          ["cache-manager", "npm:7.2.7"],\
           ["conventional-changelog", "npm:7.1.1"],\
           ["conventional-changelog-angular", "npm:8.0.0"],\
           ["esbuild-register", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:3.6.0"],\
@@ -925,6 +926,17 @@ const RAW_RUNTIME_STATE =
           ["cacheable", "npm:1.10.2"],\
           ["hookified", "npm:1.10.0"],\
           ["keyv", "npm:5.3.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@cacheable/utils", [\
+      ["npm:2.3.3", {\
+        "packageLocation": "../.yarn/berry/cache/@cacheable-utils-npm-2.3.3-6c43c3c6f6-10c0.zip/node_modules/@cacheable/utils/",\
+        "packageDependencies": [\
+          ["@cacheable/utils", "npm:2.3.3"],\
+          ["hashery", "npm:1.3.0"],\
+          ["keyv", "npm:5.5.5"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2259,6 +2271,7 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/parser", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.42.0"],\
           ["@whiskeysockets/eslint-config", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:1.0.0"],\
           ["async-mutex", "npm:0.5.0"],\
+          ["cache-manager", "npm:7.2.7"],\
           ["conventional-changelog", "npm:7.1.1"],\
           ["conventional-changelog-angular", "npm:8.0.0"],\
           ["esbuild-register", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:3.6.0"],\
@@ -2298,6 +2311,13 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@keyv/serialize", "npm:1.0.3"],\
           ["buffer", "npm:6.0.3"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:1.1.1", {\
+        "packageLocation": "../.yarn/berry/cache/@keyv-serialize-npm-1.1.1-f3de0708ec-10c0.zip/node_modules/@keyv/serialize/",\
+        "packageDependencies": [\
+          ["@keyv/serialize", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4467,6 +4487,17 @@ const RAW_RUNTIME_STATE =
           ["ssri", "npm:12.0.0"],\
           ["tar", "npm:7.4.3"],\
           ["unique-filename", "npm:4.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["cache-manager", [\
+      ["npm:7.2.7", {\
+        "packageLocation": "../.yarn/berry/cache/cache-manager-npm-7.2.7-c7d3b583a4-10c0.zip/node_modules/cache-manager/",\
+        "packageDependencies": [\
+          ["@cacheable/utils", "npm:2.3.3"],\
+          ["cache-manager", "npm:7.2.7"],\
+          ["keyv", "npm:5.5.5"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -6849,6 +6880,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["hashery", [\
+      ["npm:1.3.0", {\
+        "packageLocation": "../.yarn/berry/cache/hashery-npm-1.3.0-be19d32662-10c0.zip/node_modules/hashery/",\
+        "packageDependencies": [\
+          ["hashery", "npm:1.3.0"],\
+          ["hookified", "npm:1.14.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["hasown", [\
       ["npm:2.0.2", {\
         "packageLocation": "../.yarn/berry/cache/hasown-npm-2.0.2-80fe6c9901-10c0.zip/node_modules/hasown/",\
@@ -6873,6 +6914,13 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../.yarn/berry/cache/hookified-npm-1.10.0-bf20fc9b88-10c0.zip/node_modules/hookified/",\
         "packageDependencies": [\
           ["hookified", "npm:1.10.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:1.14.0", {\
+        "packageLocation": "../.yarn/berry/cache/hookified-npm-1.14.0-3ed02a3291-10c0.zip/node_modules/hookified/",\
+        "packageDependencies": [\
+          ["hookified", "npm:1.14.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8589,6 +8637,14 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@keyv/serialize", "npm:1.0.3"],\
           ["keyv", "npm:5.3.4"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:5.5.5", {\
+        "packageLocation": "../.yarn/berry/cache/keyv-npm-5.5.5-6aa034c371-10c0.zip/node_modules/keyv/",\
+        "packageDependencies": [\
+          ["@keyv/serialize", "npm:1.1.1"],\
+          ["keyv", "npm:5.5.5"]\
         ],\
         "linkType": "HARD"\
       }]\
