@@ -1,12 +1,12 @@
 <!-- PROJECT HEADER -->
 <div align="center">
-  <img src="https://files.catbox.moe/68wa8k.jpg" alt="WhatsApp Web API" width="600"/>
+  <img src="https://files.catbox.moe/1rjzor.jpeg" alt="WhatsApp Web API" width="600"/>
 
   # WhatsApp Web API
   **Advanced Baileys WhatsApp API Wrapper**
 
-  [![NPM Version](https://img.shields.io/npm/v/@kelvdra/baileys?color=brightgreen&label=NPM)](https://www.npmjs.com/package/@kelvdra/bails)
-  [![Downloads](https://img.shields.io/npm/dw/@kelvdra/baileys?color=blue&label=Downloads)](https://www.npmjs.com/package/@kelvdra/bails)
+  [![NPM Version](https://img.shields.io/npm/v/@kelvdra/baileys?color=brightgreen&label=NPM)](https://www.npmjs.com/package/@kelvdra/baileys)
+  [![Downloads](https://img.shields.io/npm/dw/@kelvdra/baileys?color=blue&label=Downloads)](https://www.npmjs.com/package/@kelvdra/baileys)
   [![License](https://img.shields.io/github/license/kelvdra/baileys?color=yellow)](./LICENSE)
 
   ---
@@ -37,6 +37,7 @@
         - [SendMessage Carousel](#sendMessage-Carousel)
         - [Request Payment](#request-payment)
         - [Event Message](#event-message)
+        - [Interactive Message with Native Flow](#Interactive-Message-with-Native-Flow)
         - [Interactive](#interactive)
         - [Forward Messages](#forward-messages)
         - [Location Message](#location-message)
@@ -93,7 +94,7 @@ yarn add @kelvdra/baileys@latest
 
 **Import into your code**
 ```javascript
-const { default: makeWASocket } = require("@kelvdra/baileys")
+import makeWASocket from "@kelvdra/baileys"
 ```
 
 > ⚠️ **Tip:** Use the stable version for production environments.
@@ -105,34 +106,33 @@ const { default: makeWASocket } = require("@kelvdra/baileys")
 WhatsApp supports **multi-device API**, allowing Baileys to act as a secondary WhatsApp Web client.  
 You can connect via **QR Code** or **Pairing Code**.
 
-### 📷 QR Code Login
+# How To Connect To Whatsapp
+## With QR Code
 ```javascript
-const { default: makeWASocket, Browsers } = require("@kelvdra/baileys");
+import makeWASocket from '@kelvdra/baileys'
 
-const sock = makeWASocket({
-    browser: Browsers.ubuntu('My App'),
-    printQRInTerminal: true
-});
+const client = makeWASocket({
+  browser: ['Ubuntu', 'Chrome', '20.00.1'],
+  printQRInTerminal: true
+})
 ```
-> 💡 Scan the QR code with WhatsApp on your phone to log in.
 
-### 🔑 Pairing Code Login
+## Connect With Number
 ```javascript
-const { default: makeWASocket } = require("@kelvdra/baileys");
+import makeWASocket, { useMultiFileAuthState } from '@kelvdra/baileys'
 
-const sock = makeWASocket({
-    printQRInTerminal: false
+const client = makeWASocket({
+  browser: ['Ubuntu', 'Chrome', '20.00.1'],
+  printQRInTerminal: false,
+  version: fetchLatestWAWebVersion()
+  // Other options
 });
 
-if (!sock.authState.creds.registered) {
-    const number = '6281234567890'; // no symbols, only numbers
-    const code = await sock.requestPairingCode(number);
-    console.log(code);
-}
-```
-> ⚠️ **Note:** Pairing code works only with one device at a time.
+const number = "628XXXXX";
+const code = await client.requestPairingCode(number.trim) /* Use : (number, "YYYYYYYY") for custom-pairing */
 
----
+console.log("Ur pairing code : " + code)
+```
 
 ## 💡 Important Notes About Socket Config
 
@@ -165,8 +165,8 @@ const sock = makeWASocket({
 
 Avoid scanning QR every time:
 ```javascript
-const makeWASocket = require("@kelvdra/baileys").default;
-const { useMultiFileAuthState } = require("@kelvdra/baileys");
+import makeWASocket from @kelvdra/baileys";
+import { useMultiFileAuthState } from "@kelvdra/baileys"
 
 const { state, saveCreds } = await useMultiFileAuthState('auth_info_baileys');
 const sock = makeWASocket({ auth: state });
@@ -192,9 +192,9 @@ sock.ev.on('messages.upsert', ({ messages }) => {
 > This example includes basic auth storage too
 
 ```javascript
-const makeWASocket = require("@kelvdra/baileys").default;
-const { DisconnectReason, useMultiFileAuthState } = require("@kelvdra/baileys");
-const Boom = require('@hapi/boom');
+import makeWASocket from "@kelvdra/baileys"
+import { DisconnectReason, useMultiFileAuthState } from "@kelvdra/baileys"
+import Boom from '@hapi/boom'
 
 async function connectToWhatsApp () {
     const { state, saveCreds } = await useMultiFileAuthState('auth_info_baileys')
@@ -275,8 +275,8 @@ sock.ev.on('messages.update', event => {
 It can be used as follows:
 
 ```javascript
-const makeWASocket = require("@kelvdra/baileys").default;
-const { makeInMemoryStore } = require("@kelvdra/baileys");
+import makeWASocket from "@kelvdra/baileys"
+import { makeInMemoryStore } from "@kelvdra/baileys"
 // the store maintains the data of the WA connection in memory
 // can be written out to a file & read from it
 const store = makeInMemoryStore({ })
@@ -509,9 +509,8 @@ conn.sendMessage(m.chat, {
 ```
 ### SendMessage Carousel
 ```javascript
-func nya kyk gini, nanti ku taro ke readme
- await conn.sendMessage(
-    m.chat,
+await sock.sendMessage(
+    jid,
     {
         carouselMessage: {
             caption: "Klik Url",
@@ -553,6 +552,84 @@ func nya kyk gini, nanti ku taro ke readme
     { quoted: m },
     conn
 );
+```
+
+### Interactive Message with Native Flow
+Send interactive messages with buttons, copy actions, and native flow features:
+
+```javascript
+await sock.sendMessage(jid, {    
+    interactiveMessage: {      
+        title: "Hello World",      
+        footer: "telegram: @draa82",      
+        image: { url: "https://example.com/image.jpg" },      
+        nativeFlowMessage: {        
+            messageParamsJson: JSON.stringify({          
+                limited_time_offer: {            
+                    text: "idk hummmm?",            
+                    url: "t.me/draa82",            
+                    copy_code: "kelvdra 1437",            
+                    expiration_time: Date.now() * 999          
+                },          
+                bottom_sheet: {            
+                    in_thread_buttons_limit: 2,            
+                    divider_indices: [1, 2, 3, 4, 5, 999],            
+                    list_title: "kelvdra",            
+                    button_title: "kelvdra"          
+                },          
+                tap_target_configuration: {            
+                    title: " X ",            
+                    description: "bomboclard",            
+                    canonical_url: "https://t.me/draa82",            
+                    domain: "shop.example.com",            
+                    button_index: 0          
+                }        
+            }),        
+            buttons: [          
+                {            
+                    name: "single_select",            
+                    buttonParamsJson: JSON.stringify({              
+                        has_multiple_buttons: true            
+                    })          
+                },          
+                {            
+                    name: "call_permission_request",            
+                    buttonParamsJson: JSON.stringify({              
+                        has_multiple_buttons: true            
+                    })          
+                },          
+                {            
+                    name: "single_select",            
+                    buttonParamsJson: JSON.stringify({              
+                        title: "Hello World",              
+                        sections: [                
+                            {                  
+                                title: "title",                  
+                                highlight_label: "label",                  
+                                rows: [                    
+                                    {                      
+                                        title: "@kelvdra",                      
+                                        description: "love you",                      
+                                        id: "row_2"                    
+                                    }                  
+                                ]                
+                            }              
+                        ],              
+                        has_multiple_buttons: true            
+                    })          
+                },          
+                {            
+                    name: "cta_copy",            
+                    buttonParamsJson: JSON.stringify({              
+                        display_text: "copy code",              
+                        id: "123456789",              
+                        copy_code: "ABC123XYZ"            
+                    })          
+                }        
+            ]      
+        }    
+    }  
+}, { quoted: m });
 ```
 
 #### Interactive
@@ -908,8 +985,8 @@ await sock.sendMessage(jid, {
 
 If you want to save the media you received
 ```javascript
-const { createWriteStream } = require('fs');
-const { downloadMediaMessage, getContentType } = require("@kelvdra/baileys");
+import { createWriteStream } from 'fs'
+import { downloadMediaMessage, getContentType } from "@kelvdra/baileys"
 
 sock.ev.on('messages.upsert', async ({ [m] }) => {
     if (!m.message) return // if there is no text or media message
