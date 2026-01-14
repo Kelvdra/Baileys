@@ -1,7 +1,7 @@
 {
   "name": "@kelvdra/baileys",
   "type": "module",
-  "version": "1.0.2-rc.3",
+  "version": "1.0.2-rc.4",
   "description": "Baileys fork whiskeysockets modified by kelvdra.",
   "keywords": [
     "baileys",
@@ -32,6 +32,7 @@
   "types": "lib/index.d.ts",
   "files": [
     "lib/**/*.js",
+    "lib/**/*.d.ts",
     "WAProto/**/*.js",
     "engine-requirements.js"
   ],
