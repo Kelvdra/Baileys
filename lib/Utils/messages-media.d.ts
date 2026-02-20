@@ -1,4 +1,5 @@
 import { Boom } from '@hapi/boom';
+import type { Agent } from 'https';
 import { Readable, Transform } from 'stream';
 import { URL } from 'url';
 import { proto } from '../../WAProto/index.js';
@@ -9,7 +10,7 @@ import type { ILogger } from './logger.js';
 export declare const hkdfInfoKey: (type: MediaType) => string;
 export declare const getRawMediaUploadData: (media: WAMediaUpload, mediaType: MediaType, logger?: ILogger) => Promise<{
     filePath: string;
-    fileSha256: Buffer<ArrayBufferLike>;
+    fileSha256: NonSharedBuffer;
     fileLength: number;
 }>;
 /** generates all the keys required to encrypt/decrypt & sign a media message */
@@ -71,12 +72,12 @@ type EncryptedStreamOptions = {
     opts?: RequestInit;
 };
 export declare const encryptedStream: (media: WAMediaUpload, mediaType: MediaType, { logger, saveOriginalFileIfRequired, opts }?: EncryptedStreamOptions) => Promise<{
-    mediaKey: Buffer<ArrayBufferLike>;
+    mediaKey: NonSharedBuffer;
     originalFilePath: string | undefined;
     encFilePath: string;
     mac: Buffer<ArrayBuffer>;
-    fileEncSha256: Buffer<ArrayBufferLike>;
-    fileSha256: Buffer<ArrayBufferLike>;
+    fileEncSha256: NonSharedBuffer;
+    fileSha256: NonSharedBuffer;
     fileLength: number;
 }>;
 export type MediaDownloadOptions = {
@@ -92,11 +93,26 @@ export declare const downloadContentFromMessage: ({ mediaKey, directPath, url }:
  * */
 export declare const downloadEncryptedContent: (downloadUrl: string, { cipherKey, iv }: MediaDecryptionKeyInfo, { startByte, endByte, options }?: MediaDownloadOptions) => Promise<Transform>;
 export declare function extensionForMediaMessage(message: WAMessageContent): string;
+type MediaUploadResult = {
+    url?: string;
+    direct_path?: string;
+    meta_hmac?: string;
+    ts?: number;
+    fbid?: number;
+};
+export type UploadParams = {
+    url: string;
+    filePath: string;
+    headers: Record<string, string>;
+    timeoutMs?: number;
+    agent?: Agent;
+};
+export declare const uploadWithNodeHttp: ({ url, filePath, headers, timeoutMs, agent }: UploadParams, redirectCount?: number) => Promise<MediaUploadResult | undefined>;
 export declare const getWAUploadToServer: ({ customUploadHosts, fetchAgent, logger, options }: SocketConfig, refreshMediaConn: (force: boolean) => Promise<MediaConnInfo>) => WAMediaUploadFunction;
 /**
  * Generate a binary node that will request the phone to re-upload the media & return the newly uploaded URL
  */
-export declare const encryptMediaRetryRequest: (key: WAMessageKey, mediaKey: Buffer | Uint8Array, meId: string) => Promise<BinaryNode>;
+export declare const encryptMediaRetryRequest: (key: WAMessageKey, mediaKey: Buffer | Uint8Array, meId: string) => BinaryNode;
 export declare const decodeMediaRetryNode: (node: BinaryNode) => {
     key: WAMessageKey;
     media?: {
@@ -108,7 +124,7 @@ export declare const decodeMediaRetryNode: (node: BinaryNode) => {
 export declare const decryptMediaRetryData: ({ ciphertext, iv }: {
     ciphertext: Uint8Array;
     iv: Uint8Array;
-}, mediaKey: Uint8Array, msgId: string) => Promise<proto.MediaRetryNotification>;
+}, mediaKey: Uint8Array, msgId: string) => proto.MediaRetryNotification;
 export declare const getStatusCodeForMediaRetry: (code: number) => 200 | 412 | 404 | 418;
 export {};
 //# sourceMappingURL=messages-media.d.ts.map

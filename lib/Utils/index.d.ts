@@ -16,4 +16,5 @@ export * from './event-buffer.js';
 export * from './process-message.js';
 export * from './message-retry-manager.js';
 export * from './browser-utils.js';
+export * from './identity-change-handler.js';
 //# sourceMappingURL=index.d.ts.map

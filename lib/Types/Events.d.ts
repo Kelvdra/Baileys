@@ -1,6 +1,6 @@
 import type { Boom } from '@hapi/boom';
 import { proto } from '../../WAProto/index.js';
-import type { AuthenticationCreds } from './Auth.js';
+import type { AuthenticationCreds, LIDMapping } from './Auth.js';
 import type { WACallEvent } from './Call.js';
 import type { Chat, ChatUpdate, PresenceData } from './Chat.js';
 import type { Contact } from './Contact.js';
@@ -19,6 +19,7 @@ export type BaileysEventMap = {
         chats: Chat[];
         contacts: Contact[];
         messages: WAMessage[];
+        lidPnMappings?: LIDMapping[];
         isLatest?: boolean;
         progress?: number | null;
         syncType?: proto.HistorySync.HistorySyncType | null;
@@ -28,10 +29,7 @@ export type BaileysEventMap = {
     'chats.upsert': Chat[];
     /** update the given chats */
     'chats.update': ChatUpdate[];
-    'lid-mapping.update': {
-        lid: string;
-        pn: string;
-    };
+    'lid-mapping.update': LIDMapping;
     /** delete chats with given ID */
     'chats.delete': string[];
     /** presence of contact in a chat updated */
@@ -93,6 +91,13 @@ export type BaileysEventMap = {
         action: RequestJoinAction;
         method: RequestJoinMethod;
     };
+    'group.member-tag.update': {
+        groupId: string;
+        participant: string;
+        participantAlt?: string;
+        label: string;
+        messageTimestamp?: number;
+    };
     'blocklist.set': {
         blocklist: string[];
     };
@@ -132,6 +137,36 @@ export type BaileysEventMap = {
     'newsletter-settings.update': {
         id: string;
         update: any;
+    };
+    /** Settings and actions sync events */
+    'chats.lock': {
+        id: string;
+        locked: boolean;
+    };
+    'settings.update': {
+        setting: 'unarchiveChats';
+        value: boolean;
+    } | {
+        setting: 'locale';
+        value: string;
+    } | {
+        setting: 'disableLinkPreviews';
+        value: proto.SyncActionValue.IPrivacySettingDisableLinkPreviewsAction;
+    } | {
+        setting: 'timeFormat';
+        value: proto.SyncActionValue.ITimeFormatAction;
+    } | {
+        setting: 'privacySettingRelayAllCalls';
+        value: proto.SyncActionValue.IPrivacySettingRelayAllCalls;
+    } | {
+        setting: 'statusPrivacy';
+        value: proto.SyncActionValue.IStatusPrivacyAction;
+    } | {
+        setting: 'notificationActivitySetting';
+        value: proto.SyncActionValue.NotificationActivitySettingAction.NotificationActivitySetting;
+    } | {
+        setting: 'channelsPersonalisedRecommendation';
+        value: proto.SyncActionValue.IPrivacySettingChannelsPersonalisedRecommendationAction;
     };
 };
 export type BufferedEventData = {

@@ -80,6 +80,7 @@ export type SignalDataTypeMap = {
         token: Buffer;
         timestamp?: string;
     };
+    'identity-key': Uint8Array;
 };
 export type SignalDataSet = {
     [T in keyof SignalDataTypeMap]?: {
