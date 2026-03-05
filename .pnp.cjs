@@ -33,6 +33,7 @@ const RAW_RUNTIME_STATE =
           ["@kelvdra/baileys", "workspace:."],\
           ["async-mutex", "npm:0.5.0"],\
           ["axios", "npm:1.13.6"],\
+          ["cache-manager", "npm:7.2.8"],\
           ["libsignal", "https://github.com/whiskeysockets/libsignal-node.git#commit=e81ecfc32eb74951d789ab37f7e341ab66d5fff1"],\
           ["music-metadata", "npm:11.7.0"],\
           ["pino", "npm:9.7.0"],\
@@ -50,6 +51,17 @@ const RAW_RUNTIME_STATE =
           ["cacheable", "npm:1.10.2"],\
           ["hookified", "npm:1.10.0"],\
           ["keyv", "npm:5.3.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@cacheable/utils", [\
+      ["npm:2.4.0", {\
+        "packageLocation": "../.yarn/berry/cache/@cacheable-utils-npm-2.4.0-4e42b4ebea-10c0.zip/node_modules/@cacheable/utils/",\
+        "packageDependencies": [\
+          ["@cacheable/utils", "npm:2.4.0"],\
+          ["hashery", "npm:1.5.0"],\
+          ["keyv", "npm:5.6.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -82,6 +94,7 @@ const RAW_RUNTIME_STATE =
           ["@kelvdra/baileys", "workspace:."],\
           ["async-mutex", "npm:0.5.0"],\
           ["axios", "npm:1.13.6"],\
+          ["cache-manager", "npm:7.2.8"],\
           ["libsignal", "https://github.com/whiskeysockets/libsignal-node.git#commit=e81ecfc32eb74951d789ab37f7e341ab66d5fff1"],\
           ["music-metadata", "npm:11.7.0"],\
           ["pino", "npm:9.7.0"],\
@@ -97,6 +110,13 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@keyv/serialize", "npm:1.0.3"],\
           ["buffer", "npm:6.0.3"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:1.1.1", {\
+        "packageLocation": "../.yarn/berry/cache/@keyv-serialize-npm-1.1.1-f3de0708ec-10c0.zip/node_modules/@keyv/serialize/",\
+        "packageDependencies": [\
+          ["@keyv/serialize", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -296,6 +316,17 @@ const RAW_RUNTIME_STATE =
           ["base64-js", "npm:1.5.1"],\
           ["buffer", "npm:6.0.3"],\
           ["ieee754", "npm:1.2.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["cache-manager", [\
+      ["npm:7.2.8", {\
+        "packageLocation": "../.yarn/berry/cache/cache-manager-npm-7.2.8-a63adfc08d-10c0.zip/node_modules/cache-manager/",\
+        "packageDependencies": [\
+          ["@cacheable/utils", "npm:2.4.0"],\
+          ["cache-manager", "npm:7.2.8"],\
+          ["keyv", "npm:5.6.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -569,6 +600,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["hashery", [\
+      ["npm:1.5.0", {\
+        "packageLocation": "../.yarn/berry/cache/hashery-npm-1.5.0-f6897fab77-10c0.zip/node_modules/hashery/",\
+        "packageDependencies": [\
+          ["hashery", "npm:1.5.0"],\
+          ["hookified", "npm:1.15.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["hasown", [\
       ["npm:2.0.2", {\
         "packageLocation": "../.yarn/berry/cache/hasown-npm-2.0.2-80fe6c9901-10c0.zip/node_modules/hasown/",\
@@ -584,6 +625,13 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../.yarn/berry/cache/hookified-npm-1.10.0-bf20fc9b88-10c0.zip/node_modules/hookified/",\
         "packageDependencies": [\
           ["hookified", "npm:1.10.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:1.15.1", {\
+        "packageLocation": "../.yarn/berry/cache/hookified-npm-1.15.1-72618a8360-10c0.zip/node_modules/hookified/",\
+        "packageDependencies": [\
+          ["hookified", "npm:1.15.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -603,6 +651,14 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@keyv/serialize", "npm:1.0.3"],\
           ["keyv", "npm:5.3.4"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:5.6.0", {\
+        "packageLocation": "../.yarn/berry/cache/keyv-npm-5.6.0-998f7ab008-10c0.zip/node_modules/keyv/",\
+        "packageDependencies": [\
+          ["@keyv/serialize", "npm:1.1.1"],\
+          ["keyv", "npm:5.6.0"]\
         ],\
         "linkType": "HARD"\
       }]\
