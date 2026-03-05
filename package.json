@@ -1,7 +1,7 @@
 {
   "name": "@kelvdra/baileys",
   "type": "module",
-  "version": "1.0.4",
+  "version": "1.0.3-rc.6",
   "description": "Baileys fork whiskeysockets modified by kelvdra.",
   "keywords": [
     "baileys",
@@ -32,7 +32,7 @@
   "types": "lib/index.d.ts",
   "files": [
     "lib/**/*.js",
-    "lib/**/*.d.ts",
+    "lib/**/*.d.ts", 
     "lib/**/*.json",
     "WAProto/**/*",
     "engine-requirements.js"
@@ -48,7 +48,6 @@
     "p-queue": "^9.0.0",
     "pino": "^9.6",
     "protobufjs": "^7.2.4",
-    "whatsapp-rust-bridge": "0.5.2",
     "ws": "^8.13.0"
   },
   "peerDependencies": {
