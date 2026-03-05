@@ -2,7 +2,6 @@ export type WACallUpdateType = 'offer' | 'ringing' | 'timeout' | 'reject' | 'acc
 export type WACallEvent = {
     chatId: string;
     from: string;
-    callerPn?: string;
     isGroup?: boolean;
     groupJid?: string;
     id: string;
