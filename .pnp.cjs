@@ -39,7 +39,6 @@ const RAW_RUNTIME_STATE =
           ["p-queue", "npm:9.0.0"],\
           ["pino", "npm:9.7.0"],\
           ["protobufjs", "npm:7.5.3"],\
-          ["whatsapp-rust-bridge", "npm:0.5.2"],\
           ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.18.3"]\
         ],\
         "linkType": "SOFT"\
@@ -102,7 +101,6 @@ const RAW_RUNTIME_STATE =
           ["p-queue", "npm:9.0.0"],\
           ["pino", "npm:9.7.0"],\
           ["protobufjs", "npm:7.5.3"],\
-          ["whatsapp-rust-bridge", "npm:0.5.2"],\
           ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.18.3"]\
         ],\
         "linkType": "SOFT"\
@@ -748,15 +746,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../.yarn/berry/cache/undici-types-npm-7.8.0-86f3e2d23e-10c0.zip/node_modules/undici-types/",\
         "packageDependencies": [\
           ["undici-types", "npm:7.8.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["whatsapp-rust-bridge", [\
-      ["npm:0.5.2", {\
-        "packageLocation": "../.yarn/berry/cache/whatsapp-rust-bridge-npm-0.5.2-c2e0338a72-10c0.zip/node_modules/whatsapp-rust-bridge/",\
-        "packageDependencies": [\
-          ["whatsapp-rust-bridge", "npm:0.5.2"]\
         ],\
         "linkType": "HARD"\
       }]\
