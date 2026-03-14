@@ -1,29 +1,36 @@
 import type { SocketConfig, WAMediaUpload } from '../Types/index.js';
 import type { NewsletterMetadata, NewsletterUpdate } from '../Types/index.js';
+export declare const extractNewsletterMetadata: (result: any, isCreate?: boolean) => any;
 export declare const makeNewsletterSocket: (config: SocketConfig) => {
-    newsletterCreate: (name: string, description?: string) => Promise<NewsletterMetadata>;
-    newsletterUpdate: (jid: string, updates: NewsletterUpdate) => Promise<unknown>;
+    newsletterQuery: (jid: string, type: string, content: any[]) => Promise<any>;
+    newsletterWMexQuery: (jid: string | undefined, queryId: string, content?: Record<string, any>, dataPath?: string) => Promise<any>;
+    newsletterCreate: (name: string, description?: string, picture?: WAMediaUpload) => Promise<NewsletterMetadata>;
+    newsletterUpdate: (jid: string, updates: NewsletterUpdate & {
+        settings?: any;
+    }) => Promise<unknown>;
     newsletterSubscribers: (jid: string) => Promise<{
         subscribers: number;
     }>;
-    newsletterMetadata: (type: "invite" | "jid", key: string) => Promise<NewsletterMetadata | null>;
+    newsletterMetadata: (type: "invite" | "jid", key: string, role?: string) => Promise<NewsletterMetadata | null>;
+    subscribeNewsletterUpdates: (jid: string) => Promise<any>;
+    newsletterReactionMode: (jid: string, mode: string) => Promise<unknown>;
     newsletterFollow: (jid: string) => Promise<unknown>;
     newsletterUnfollow: (jid: string) => Promise<unknown>;
     newsletterMute: (jid: string) => Promise<unknown>;
     newsletterUnmute: (jid: string) => Promise<unknown>;
+    newsletterAction: (jid: string, type: string) => Promise<any>;
     newsletterUpdateName: (jid: string, name: string) => Promise<unknown>;
     newsletterUpdateDescription: (jid: string, description: string) => Promise<unknown>;
     newsletterUpdatePicture: (jid: string, content: WAMediaUpload) => Promise<unknown>;
     newsletterRemovePicture: (jid: string) => Promise<unknown>;
-    newsletterReactMessage: (jid: string, serverId: string, reaction?: string) => Promise<void>;
-    newsletterFetchMessages: (jid: string, count: number, since: number, after: number) => Promise<any>;
-    subscribeNewsletterUpdates: (jid: string) => Promise<{
-        duration: string;
-    } | null>;
+    newsletterFetchAllParticipating: () => Promise<never>;
     newsletterAdminCount: (jid: string) => Promise<number>;
     newsletterChangeOwner: (jid: string, newOwnerJid: string) => Promise<void>;
     newsletterDemote: (jid: string, userJid: string) => Promise<void>;
     newsletterDelete: (jid: string) => Promise<void>;
+    newsletterReactMessage: (jid: string, serverId: string, reaction?: string) => Promise<void>;
+    newsletterFetchMessages: (...args: any[]) => Promise<any>;
+    newsletterFetchUpdates: (jid: string, count: number, after?: number, since?: number) => Promise<any>;
     groupMetadata: (jid: string) => Promise<import("../index.js").GroupMetadata>;
     groupCreate: (subject: string, participants: string[]) => Promise<import("../index.js").GroupMetadata>;
     groupLeave: (id: string) => Promise<void>;
