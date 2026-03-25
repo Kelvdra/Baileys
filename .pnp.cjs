@@ -33,6 +33,7 @@ const RAW_RUNTIME_STATE =
           ["@kelvdra/baileys", "workspace:."],\
           ["async-mutex", "npm:0.5.0"],\
           ["cache-manager", "npm:7.2.7"],\
+          ["fflate", "npm:0.8.2"],\
           ["libsignal", "https://github.com/whiskeysockets/libsignal-node.git#commit=e81ecfc32eb74951d789ab37f7e341ab66d5fff1"],\
           ["lru-cache", "npm:11.2.1"],\
           ["music-metadata", "npm:11.7.0"],\
@@ -95,6 +96,7 @@ const RAW_RUNTIME_STATE =
           ["@kelvdra/baileys", "workspace:."],\
           ["async-mutex", "npm:0.5.0"],\
           ["cache-manager", "npm:7.2.7"],\
+          ["fflate", "npm:0.8.2"],\
           ["libsignal", "https://github.com/whiskeysockets/libsignal-node.git#commit=e81ecfc32eb74951d789ab37f7e341ab66d5fff1"],\
           ["lru-cache", "npm:11.2.1"],\
           ["music-metadata", "npm:11.7.0"],\
