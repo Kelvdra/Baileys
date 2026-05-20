@@ -1,7 +1,7 @@
 {
   "name": "@kelvdra/baileys",
   "type": "module",
-  "version": "1.0.5",
+  "version": "1.0.5-rc.1",
   "description": "Baileys fork whiskeysockets modified by kelvdra.",
   "keywords": [
     "baileys",
