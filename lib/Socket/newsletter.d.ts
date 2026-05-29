@@ -1,36 +1,29 @@
 import type { SocketConfig, WAMediaUpload } from '../Types/index.js';
 import type { NewsletterMetadata, NewsletterUpdate } from '../Types/index.js';
-export declare const extractNewsletterMetadata: (result: any, isCreate?: boolean) => any;
 export declare const makeNewsletterSocket: (config: SocketConfig) => {
-    newsletterQuery: (jid: string, type: string, content: any[]) => Promise<any>;
-    newsletterWMexQuery: (jid: string | undefined, queryId: string, content?: Record<string, any>, dataPath?: string) => Promise<any>;
-    newsletterCreate: (name: string, description?: string, picture?: WAMediaUpload) => Promise<NewsletterMetadata>;
-    newsletterUpdate: (jid: string, updates: NewsletterUpdate & {
-        settings?: any;
-    }) => Promise<unknown>;
+    newsletterCreate: (name: string, description?: string) => Promise<NewsletterMetadata>;
+    newsletterUpdate: (jid: string, updates: NewsletterUpdate) => Promise<unknown>;
     newsletterSubscribers: (jid: string) => Promise<{
         subscribers: number;
     }>;
-    newsletterMetadata: (type: "invite" | "jid", key: string, role?: string) => Promise<NewsletterMetadata | null>;
-    subscribeNewsletterUpdates: (jid: string) => Promise<any>;
-    newsletterReactionMode: (jid: string, mode: string) => Promise<unknown>;
+    newsletterMetadata: (type: "invite" | "jid", key: string) => Promise<NewsletterMetadata | null>;
     newsletterFollow: (jid: string) => Promise<unknown>;
     newsletterUnfollow: (jid: string) => Promise<unknown>;
     newsletterMute: (jid: string) => Promise<unknown>;
     newsletterUnmute: (jid: string) => Promise<unknown>;
-    newsletterAction: (jid: string, type: string) => Promise<any>;
     newsletterUpdateName: (jid: string, name: string) => Promise<unknown>;
     newsletterUpdateDescription: (jid: string, description: string) => Promise<unknown>;
     newsletterUpdatePicture: (jid: string, content: WAMediaUpload) => Promise<unknown>;
     newsletterRemovePicture: (jid: string) => Promise<unknown>;
-    newsletterFetchAllParticipating: () => Promise<never>;
+    newsletterReactMessage: (jid: string, serverId: string, reaction?: string) => Promise<void>;
+    newsletterFetchMessages: (jid: string, count: number, since: number, after: number) => Promise<any>;
+    subscribeNewsletterUpdates: (jid: string) => Promise<{
+        duration: string;
+    } | null>;
     newsletterAdminCount: (jid: string) => Promise<number>;
     newsletterChangeOwner: (jid: string, newOwnerJid: string) => Promise<void>;
     newsletterDemote: (jid: string, userJid: string) => Promise<void>;
     newsletterDelete: (jid: string) => Promise<void>;
-    newsletterReactMessage: (jid: string, serverId: string, reaction?: string) => Promise<void>;
-    newsletterFetchMessages: (...args: any[]) => Promise<any>;
-    newsletterFetchUpdates: (jid: string, count: number, after?: number, since?: number) => Promise<any>;
     groupMetadata: (jid: string) => Promise<import("../index.js").GroupMetadata>;
     groupCreate: (subject: string, participants: string[]) => Promise<import("../index.js").GroupMetadata>;
     groupLeave: (id: string) => Promise<void>;
@@ -61,11 +54,25 @@ export declare const makeNewsletterSocket: (config: SocketConfig) => {
     groupFetchAllParticipating: () => Promise<{
         [_: string]: import("../index.js").GroupMetadata;
     }>;
+    serverProps: {
+        privacyTokenOn1to1: boolean;
+        profilePicPrivacyToken: boolean;
+        lidTrustedTokenIssueToLid: boolean;
+    };
     createCallLink: (type: "audio" | "video", event?: {
         startTime: number;
     }, timeoutMs?: number) => Promise<string | undefined>;
     getBotListV2: () => Promise<import("../index.js").BotListInfo[]>;
-    processingMutex: {
+    messageMutex: {
+        mutex<T>(code: () => Promise<T> | T): Promise<T>;
+    };
+    receiptMutex: {
+        mutex<T>(code: () => Promise<T> | T): Promise<T>;
+    };
+    appStatePatchMutex: {
+        mutex<T>(code: () => Promise<T> | T): Promise<T>;
+    };
+    notificationMutex: {
         mutex<T>(code: () => Promise<T> | T): Promise<T>;
     };
     fetchPrivacySettings: (force?: boolean) => Promise<{
@@ -74,7 +81,7 @@ export declare const makeNewsletterSocket: (config: SocketConfig) => {
     upsertMessage: (msg: import("../index.js").WAMessage, type: import("../index.js").MessageUpsertType) => Promise<void>;
     appPatch: (patchCreate: import("../index.js").WAPatchCreate) => Promise<void>;
     sendPresenceUpdate: (type: import("../index.js").WAPresence, toJid?: string) => Promise<void>;
-    presenceSubscribe: (toJid: string, tcToken?: Buffer) => Promise<void>;
+    presenceSubscribe: (toJid: string) => Promise<void>;
     profilePictureUrl: (jid: string, type?: "preview" | "image", timeoutMs?: number) => Promise<string | undefined>;
     fetchBlocklist: () => Promise<(string | undefined)[]>;
     fetchStatus: (...jids: string[]) => Promise<import("../index.js").USyncQueryResultList[] | undefined>;
@@ -103,6 +110,7 @@ export declare const makeNewsletterSocket: (config: SocketConfig) => {
     cleanDirtyBits: (type: "account_sync" | "groups", fromTimestamp?: number | string) => Promise<void>;
     addOrEditContact: (jid: string, contact: import("../index.js").proto.SyncActionValue.IContactAction) => Promise<void>;
     removeContact: (jid: string) => Promise<void>;
+    placeholderResendCache: import("../index.js").CacheStore;
     addLabel: (jid: string, labels: import("../Types/Label.js").LabelActionBody) => Promise<void>;
     addChatLabel: (jid: string, labelId: string) => Promise<void>;
     removeChatLabel: (jid: string, labelId: string) => Promise<void>;
@@ -122,6 +130,7 @@ export declare const makeNewsletterSocket: (config: SocketConfig) => {
         createBufferedFunction<A extends any[], T>(work: (...args: A) => Promise<T>): (...args: A) => Promise<T>;
         flush(): boolean;
         isBuffering(): boolean;
+        destroy(): void;
     };
     authState: {
         creds: import("../index.js").AuthenticationCreds;
@@ -136,13 +145,16 @@ export declare const makeNewsletterSocket: (config: SocketConfig) => {
     sendRawMessage: (data: Uint8Array | Buffer) => Promise<void>;
     sendNode: (frame: import("../index.js").BinaryNode) => Promise<void>;
     logout: (msg?: string) => Promise<void>;
-    end: (error: Error | undefined) => void;
+    end: (error: Error | undefined) => Promise<void>;
+    registerSocketEndHandler: (handler: (error: Error | undefined) => void | Promise<void>) => void;
     onUnexpectedError: (err: Error | import("@hapi/boom").Boom, msg: string) => void;
-    uploadPreKeys: (count?: number, retryCount?: number) => Promise<void>;
+    uploadPreKeys: (count?: number) => Promise<void>;
     uploadPreKeysToServerIfRequired: () => Promise<void>;
     digestKeyBundle: () => Promise<void>;
     rotateSignedPreKey: () => Promise<void>;
     requestPairingCode: (phoneNumber: string, customPairingCode?: string) => Promise<string>;
+    updateServerTimeOffset: ({ attrs }: import("../index.js").BinaryNode) => void;
+    sendUnifiedSession: () => Promise<void>;
     wamBuffer: import("../index.js").BinaryInfo;
     waitForConnectionUpdate: (check: (u: Partial<import("../index.js").ConnectionState>) => Promise<boolean | undefined>, timeoutMs?: number) => Promise<void>;
     sendWAMBuffer: (wamBuffer: Buffer) => Promise<any>;
@@ -151,6 +163,8 @@ export declare const makeNewsletterSocket: (config: SocketConfig) => {
         jid: string;
         exists: boolean;
     }[] | undefined>;
+    fetchAccountReachoutTimelock: () => Promise<import("../index.js").ReachoutTimelockState>;
+    fetchNewChatMessageCap: () => Promise<import("../index.js").NewChatMessageCapInfo>;
 };
 export type NewsletterSocket = ReturnType<typeof makeNewsletterSocket>;
 //# sourceMappingURL=newsletter.d.ts.map

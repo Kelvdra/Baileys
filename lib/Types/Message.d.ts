@@ -9,13 +9,17 @@ export { proto as WAProto };
 export type WAMessage = proto.IWebMessageInfo & {
     key: WAMessageKey;
     messageStubParameters?: any;
+    category?: string;
+    retryCount?: number;
 };
 export type WAMessageContent = proto.IMessage;
 export type WAContactMessage = proto.Message.IContactMessage;
 export type WAContactsArrayMessage = proto.Message.IContactsArrayMessage;
 export type WAMessageKey = proto.IMessageKey & {
     remoteJidAlt?: string;
+    remoteJidUsername?: string;
     participantAlt?: string;
+    participantUsername?: string;
     server_id?: string;
     addressingMode?: string;
     isViewOnce?: boolean;
@@ -33,11 +37,7 @@ export type WAMediaPayloadURL = {
 export type WAMediaPayloadStream = {
     stream: Readable;
 };
-export type WAMediaUpload = Buffer | {
-    url: URL | string
-} | {
-    stream: Readable
-} | WAMediaPayloadStream | WAMediaPayloadURL
+export type WAMediaUpload = Buffer | WAMediaPayloadStream | WAMediaPayloadURL;
 /** Set of message types that are supported by the library */
 export type MessageType = keyof proto.Message;
 export declare enum WAMessageAddressingMode {
@@ -60,16 +60,6 @@ export type MediaConnInfo = {
     }[];
     fetchDate: Date;
 };
-export interface Carousel {
-    image?: WAMediaUpload
-    video?: WAMediaUpload
-    product?: WASendableProduct
-    title?: string
-    body?: string
-    footer?: string
-    buttons?: proto.Message.InteractiveMessage.NativeFlowMessage.NativeFlowButton[]
-}
-
 export interface WAUrlInfo {
     'canonical-url': string;
     'matched-text': string;
@@ -82,6 +72,8 @@ export interface WAUrlInfo {
 type Mentionable = {
     /** list of jids that are mentioned in the accompanying text */
     mentions?: string[];
+    /** mention all */
+    mentionAll?: boolean;
 };
 type Contextable = {
     /** add contextInfo to the message */
@@ -90,60 +82,6 @@ type Contextable = {
 type ViewOnce = {
     viewOnce?: boolean;
 };
-type Buttonable = {
-    /** add buttons to the message  */
-    buttons?: proto.Message.ButtonsMessage.IButton[]
-}
-
-type Templatable = {
-    /** add buttons to the message (conflicts with normal buttons)*/
-    templateButtons?: proto.IHydratedTemplateButton[]
-    footer?: string
-}
-
-type Interactiveable = {
-   /** add buttons to the message (conflicts with normal buttons)*/
-   interactiveButtons?: proto.Message.InteractiveMessage.NativeFlowMessage.INativeFlowButton[]
-   title?: string
-   subtitle?: string
-   footer?: string
-   hasMediaAttachment?: boolean
-}
-
-type Shopable = {
-   shop?: proto.Message.InteractiveMessage.ShopMessage
-   title?: string
-   subtitle?: string
-   footer?: string
-   hasMediaAttachment?: boolean
-}
-
-type Collectionable = {
-   collection?: proto.Message.InteractiveMessage.CollectionMessage
-   title?: string
-   subtitle?: string
-   footer?: string
-   hasMediaAttachment?: boolean
-}
-
-type Listable = {
-    /** Sections of the List */
-    sections?: proto.Message.ListMessage.ISection[]
-    /** Title of a List Message only */
-    title?: string
-    /** Text of the button on the list (required) */
-    buttonText?: string
-    /** ListType of a List Message only */
-    listType?: proto.Message.ListMessage.ListType
-}
-
-type Cardsable = {
-    cards?: Carousel[]
-    title?: string
-    subtitle?: string
-    footer?: string
-}
-
 type Editable = {
     edit?: WAMessageKey;
 };
@@ -171,6 +109,12 @@ export type EventMessageOptions = {
     extraGuestsAllowed?: boolean;
     messageSecret?: Uint8Array<ArrayBufferLike>;
 };
+export type AlbumMessageOptions = {
+    /** Number of images expected in the album */
+    expectedImageCount?: number;
+    /** Number of videos expected in the album */
+    expectedVideoCount?: number;
+};
 type SharePhoneNumber = {
     sharePhoneNumber: boolean;
 };
@@ -178,37 +122,41 @@ type RequestPhoneNumber = {
     requestPhoneNumber: boolean;
 };
 export type AnyMediaMessageContent = (({
-    image: WAMediaUpload
-    caption?: string
-    jpegThumbnail?: string
-} & Mentionable & Contextable & Buttonable & Templatable & Interactiveable & WithDimensions) | ({
-    video: WAMediaUpload
-    caption?: string
-    gifPlayback?: boolean
-    jpegThumbnail?: string
-} & Mentionable & Contextable & Buttonable & Templatable & Interactiveable & WithDimensions) | {
-    audio: WAMediaUpload
+    image: WAMediaUpload;
+    caption?: string;
+    jpegThumbnail?: string;
+} & Mentionable & Contextable & WithDimensions) | ({
+    video: WAMediaUpload;
+    caption?: string;
+    gifPlayback?: boolean;
+    jpegThumbnail?: string;
+    /** if set to true, will send as a `video note` */
+    ptv?: boolean;
+} & Mentionable & Contextable & WithDimensions) | {
+    audio: WAMediaUpload;
     /** if set to true, will send as a `voice note` */
-    ptt?: boolean
+    ptt?: boolean;
     /** optionally tell the duration of the audio */
-    seconds?: number
+    seconds?: number;
 } | ({
-    sticker: WAMediaUpload
-    isAnimated?: boolean
+    sticker: WAMediaUpload;
+    isAnimated?: boolean;
 } & WithDimensions) | ({
-    document: WAMediaUpload
-    mimetype: string
-    fileName?: string
-    caption?: string
-} & Contextable & Buttonable & Templatable & Interactiveable )) & {
-    mimetype?: string
-} & Editable
-
+    document: WAMediaUpload;
+    mimetype: string;
+    fileName?: string;
+    caption?: string;
+} & Contextable)) & {
+    mimetype?: string;
+} & Editable & {
+    /** key of the parent albumMessage to associate this media with */
+    albumParentKey?: WAMessageKey;
+};
 export type ButtonReplyInfo = {
-    displayText: string
-    id: string
-    index: number
-}
+    displayText: string;
+    id: string;
+    index: number;
+};
 export type GroupInviteInfo = {
     inviteCode: string;
     inviteExpiration: number;
@@ -220,53 +168,43 @@ export type WASendableProduct = Omit<proto.Message.ProductMessage.IProductSnapsh
     productImage: WAMediaUpload;
 };
 export type AnyRegularMessageContent = (({
-    text: string
-    linkPreview?: WAUrlInfo | null
-} & Mentionable & Contextable & Buttonable & Templatable & Interactiveable & Shopable & Collectionable & Cardsable & Listable & Editable & WithDimensions) | AnyMediaMessageContent | ({
-    poll: PollMessageOptions
-} & Mentionable & Contextable & Buttonable & Templatable & Interactiveable & Shopable & Collectionable & Cardsable & Listable & Editable & WithDimensions) | {
+    text: string;
+    linkPreview?: WAUrlInfo | null;
+} & Mentionable & Contextable & Editable) | AnyMediaMessageContent | {
+    event: EventMessageOptions;
+} | ({
+    poll: PollMessageOptions;
+} & Mentionable & Contextable & Editable) | ({
+    album: AlbumMessageOptions;
+} & Contextable & Mentionable) | {
     contacts: {
-        displayName?: string
-        contacts: proto.Message.IContactMessage[]
-    }
+        displayName?: string;
+        contacts: proto.Message.IContactMessage[];
+    };
 } | {
-    location: WALocationMessage
+    location: WALocationMessage;
 } | {
-    react: proto.Message.IReactionMessage
+    react: proto.Message.IReactionMessage;
 } | {
-    buttonReply: ButtonReplyInfo
-    type: 'template' | 'plain' | 'list' | 'interactive'
+    buttonReply: ButtonReplyInfo;
+    type: 'template' | 'plain';
 } | {
-     groupInvite: GroupInviteInfo
+    groupInvite: GroupInviteInfo;
 } | {
-     pin: PinInfo
+    listReply: Omit<proto.Message.IListResponseMessage, 'contextInfo'>;
 } | {
-     keep: KeepInfo
+    pin: WAMessageKey;
+    type: proto.PinInChat.Type;
+    /**
+     * 24 hours, 7 days, 30 days
+     */
+    time?: 86400 | 604800 | 2592000;
 } | {
-     call: CallCreationInfo
-} | {
-     event: WAEventMessage
-} | {
-     adminInvite: AdminInviteInfo
-} | {
-     payment: PaymentInfo
-} | {
-    paymentInvite: {
-       type: number 
-       expiry: number
-    }
-} | {
-    pollResult: PollResultOptions
-} | {
-    order: WAOrderMessage
-} | {
-    product: WASendableProduct
-    businessOwnerJid?: string
-    body?: string
-    footer?: string
-} | {
-    stickerPack: StickerPack
-} | SharePhoneNumber | RequestPhoneNumber) & ViewOnce & ViewOnceExt
+    product: WASendableProduct;
+    businessOwnerJid?: string;
+    body?: string;
+    footer?: string;
+} | SharePhoneNumber | RequestPhoneNumber) & ViewOnce;
 export type AnyMessageContent = AnyRegularMessageContent | {
     forward: WAMessage;
     force?: boolean;
@@ -374,9 +312,9 @@ export type MessageUserReceiptUpdate = {
     receipt: MessageUserReceipt;
 };
 export type MediaDecryptionKeyInfo = {
-    iv: Buffer;
-    cipherKey: Buffer;
-    macKey?: Buffer;
+    iv: Uint8Array;
+    cipherKey: Uint8Array;
+    macKey?: Uint8Array;
 };
 export type MinimalMessage = Pick<WAMessage, 'key' | 'messageTimestamp'>;
 //# sourceMappingURL=Message.d.ts.map

@@ -34,13 +34,13 @@ const RAW_RUNTIME_STATE =
           ["async-mutex", "npm:0.5.0"],\
           ["cache-manager", "npm:7.2.8"],\
           ["fflate", "npm:0.8.3"],\
-          ["libsignal", "https://github.com/whiskeysockets/libsignal-node.git#commit=bcea72df9ec34d9d9140ab30619cf479c7c144c7"],\
+          ["libsignal", "npm:6.0.0"],\
           ["lru-cache", "npm:11.3.6"],\
           ["music-metadata", "npm:11.12.3"],\
           ["p-queue", "npm:9.3.0"],\
           ["pino", "npm:9.14.0"],\
-          ["protobufjs", "npm:7.5.8"],\
-          ["whatsapp-rust-bridge", "npm:0.5.3"],\
+          ["protobufjs", "npm:7.6.1"],\
+          ["whatsapp-rust-bridge", "npm:0.5.4"],\
           ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.20.1"]\
         ],\
         "linkType": "SOFT"\
@@ -120,13 +120,13 @@ const RAW_RUNTIME_STATE =
           ["async-mutex", "npm:0.5.0"],\
           ["cache-manager", "npm:7.2.8"],\
           ["fflate", "npm:0.8.3"],\
-          ["libsignal", "https://github.com/whiskeysockets/libsignal-node.git#commit=bcea72df9ec34d9d9140ab30619cf479c7c144c7"],\
+          ["libsignal", "npm:6.0.0"],\
           ["lru-cache", "npm:11.3.6"],\
           ["music-metadata", "npm:11.12.3"],\
           ["p-queue", "npm:9.3.0"],\
           ["pino", "npm:9.14.0"],\
-          ["protobufjs", "npm:7.5.8"],\
-          ["whatsapp-rust-bridge", "npm:0.5.3"],\
+          ["protobufjs", "npm:7.6.1"],\
+          ["whatsapp-rust-bridge", "npm:0.5.4"],\
           ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.20.1"]\
         ],\
         "linkType": "SOFT"\
@@ -208,6 +208,13 @@ const RAW_RUNTIME_STATE =
           ["@protobufjs/eventemitter", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:1.1.1", {\
+        "packageLocation": "../.yarn/berry/cache/@protobufjs-eventemitter-npm-1.1.1-dbe0dfc812-10c0.zip/node_modules/@protobufjs/eventemitter/",\
+        "packageDependencies": [\
+          ["@protobufjs/eventemitter", "npm:1.1.1"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["@protobufjs/fetch", [\
@@ -234,6 +241,13 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../.yarn/berry/cache/@protobufjs-inquire-npm-1.1.1-1f267bc97f-10c0.zip/node_modules/@protobufjs/inquire/",\
         "packageDependencies": [\
           ["@protobufjs/inquire", "npm:1.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:1.1.2", {\
+        "packageLocation": "../.yarn/berry/cache/@protobufjs-inquire-npm-1.1.2-d8a203d287-10c0.zip/node_modules/@protobufjs/inquire/",\
+        "packageDependencies": [\
+          ["@protobufjs/inquire", "npm:1.1.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -457,11 +471,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["libsignal", [\
-      ["https://github.com/whiskeysockets/libsignal-node.git#commit=bcea72df9ec34d9d9140ab30619cf479c7c144c7", {\
-        "packageLocation": "../.yarn/berry/cache/libsignal-https-6221f98243-10c0.zip/node_modules/libsignal/",\
+      ["npm:6.0.0", {\
+        "packageLocation": "../.yarn/berry/cache/libsignal-npm-6.0.0-163303371e-10c0.zip/node_modules/libsignal/",\
         "packageDependencies": [\
           ["curve25519-js", "npm:0.0.4"],\
-          ["libsignal", "https://github.com/whiskeysockets/libsignal-node.git#commit=bcea72df9ec34d9d9140ab30619cf479c7c144c7"],\
+          ["libsignal", "npm:6.0.0"],\
           ["protobufjs", "npm:7.5.8"]\
         ],\
         "linkType": "HARD"\
@@ -618,6 +632,25 @@ const RAW_RUNTIME_STATE =
           ["protobufjs", "npm:7.5.8"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:7.6.1", {\
+        "packageLocation": "./.yarn/unplugged/protobufjs-npm-7.6.1-5907e6a620/node_modules/protobufjs/",\
+        "packageDependencies": [\
+          ["@protobufjs/aspromise", "npm:1.1.2"],\
+          ["@protobufjs/base64", "npm:1.1.2"],\
+          ["@protobufjs/codegen", "npm:2.0.5"],\
+          ["@protobufjs/eventemitter", "npm:1.1.1"],\
+          ["@protobufjs/fetch", "npm:1.1.1"],\
+          ["@protobufjs/float", "npm:1.0.2"],\
+          ["@protobufjs/inquire", "npm:1.1.2"],\
+          ["@protobufjs/path", "npm:1.1.2"],\
+          ["@protobufjs/pool", "npm:1.1.0"],\
+          ["@protobufjs/utf8", "npm:1.1.1"],\
+          ["@types/node", "npm:25.8.0"],\
+          ["long", "npm:5.3.2"],\
+          ["protobufjs", "npm:7.6.1"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["qified", [\
@@ -736,10 +769,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["whatsapp-rust-bridge", [\
-      ["npm:0.5.3", {\
-        "packageLocation": "../.yarn/berry/cache/whatsapp-rust-bridge-npm-0.5.3-b0326d32f3-10c0.zip/node_modules/whatsapp-rust-bridge/",\
+      ["npm:0.5.4", {\
+        "packageLocation": "../.yarn/berry/cache/whatsapp-rust-bridge-npm-0.5.4-d12c15d328-10c0.zip/node_modules/whatsapp-rust-bridge/",\
         "packageDependencies": [\
-          ["whatsapp-rust-bridge", "npm:0.5.3"]\
+          ["whatsapp-rust-bridge", "npm:0.5.4"]\
         ],\
         "linkType": "HARD"\
       }]\
