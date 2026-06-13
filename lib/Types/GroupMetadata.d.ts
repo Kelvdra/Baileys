@@ -1,6 +1,16 @@
 import type { Contact } from './Contact.js';
 import type { WAMessageAddressingMode } from './Message.js';
 export type GroupParticipant = Contact & {
+    /** PN/JID result. If WA returns @lid with phone_number, this is normalized to @s.whatsapp.net */
+    jid?: string;
+    /** display/notify name returned by WhatsApp participant node */
+    username?: string;
+    name?: string;
+    notify?: string;
+    /** original LID when WhatsApp returns LID addressing */
+    lid?: string;
+    /** PN JID when available */
+    phoneNumber?: string;
     isAdmin?: boolean;
     isSuperAdmin?: boolean;
     admin?: 'admin' | 'superadmin' | null;
@@ -15,17 +25,20 @@ export interface GroupMetadata {
     addressingMode?: WAMessageAddressingMode;
     owner: string | undefined;
     ownerPn?: string | undefined;
+    ownerLid?: string | undefined;
     owner_country_code?: string | undefined;
     subject: string;
     /** group subject owner */
     subjectOwner?: string;
     subjectOwnerPn?: string;
+    subjectOwnerLid?: string;
     /** group subject modification date */
     subjectTime?: number;
     creation?: number;
     desc?: string;
     descOwner?: string;
     descOwnerPn?: string;
+    descOwnerLid?: string;
     descId?: string;
     descTime?: number;
     /** if this group is part of a community, it returns the jid of the community to which it belongs */
