@@ -5,8 +5,11 @@ export type GroupParticipant = Contact & {
     jid?: string;
     /** display/notify name returned by WhatsApp participant node */
     username?: string;
+    waUsername?: string;
     name?: string;
     notify?: string;
+    /** best display name after metadata/contact-cache enrichment */
+    displayName?: string;
     /** original LID when WhatsApp returns LID addressing */
     lid?: string;
     /** PN JID when available */
