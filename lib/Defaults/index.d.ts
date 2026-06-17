@@ -20,6 +20,8 @@ export declare const NOISE_WA_HEADER: Buffer<ArrayBuffer>;
 export declare const URL_REGEX: RegExp;
 export declare const WA_CERT_DETAILS: {
     SERIAL: number;
+    ISSUER: string;
+    PUBLIC_KEY: Buffer<ArrayBuffer>;
 };
 export declare const PROCESSABLE_HISTORY_TYPES: proto.HistorySync.HistorySyncType[];
 export declare const DEFAULT_CONNECTION_CONFIG: SocketConfig;
@@ -52,11 +54,18 @@ export declare const MEDIA_KEYS: MediaType[];
 export declare const MIN_PREKEY_COUNT = 5;
 export declare const INITIAL_PREKEY_COUNT = 812;
 export declare const UPLOAD_TIMEOUT = 30000;
+export declare const HISTORY_SYNC_PAUSED_TIMEOUT_MS = 120000;
 export declare const MIN_UPLOAD_INTERVAL = 5000;
 export declare const DEFAULT_CACHE_TTLS: {
     SIGNAL_STORE: number;
     MSG_RETRY: number;
     CALL_OFFER: number;
     USER_DEVICES: number;
+};
+export declare const TimeMs: {
+    Minute: number;
+    Hour: number;
+    Day: number;
+    Week: number;
 };
 //# sourceMappingURL=index.d.ts.map
