@@ -35,13 +35,13 @@ const RAW_RUNTIME_STATE =
           ["cache-manager", "npm:7.2.8"],\
           ["fflate", "npm:0.8.3"],\
           ["libsignal", "https://github.com/whiskeysockets/libsignal-node.git#commit=bcea72df9ec34d9d9140ab30619cf479c7c144c7"],\
-          ["lru-cache", "npm:11.3.6"],\
-          ["music-metadata", "npm:11.12.3"],\
+          ["lru-cache", "npm:11.5.1"],\
+          ["music-metadata", "npm:11.13.0"],\
           ["p-queue", "npm:9.3.0"],\
           ["pino", "npm:9.14.0"],\
-          ["protobufjs", "npm:7.5.8"],\
+          ["protobufjs", "npm:7.6.4"],\
           ["whatsapp-rust-bridge", "npm:0.5.3"],\
-          ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.20.1"]\
+          ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.21.0"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -121,13 +121,13 @@ const RAW_RUNTIME_STATE =
           ["cache-manager", "npm:7.2.8"],\
           ["fflate", "npm:0.8.3"],\
           ["libsignal", "https://github.com/whiskeysockets/libsignal-node.git#commit=bcea72df9ec34d9d9140ab30619cf479c7c144c7"],\
-          ["lru-cache", "npm:11.3.6"],\
-          ["music-metadata", "npm:11.12.3"],\
+          ["lru-cache", "npm:11.5.1"],\
+          ["music-metadata", "npm:11.13.0"],\
           ["p-queue", "npm:9.3.0"],\
           ["pino", "npm:9.14.0"],\
-          ["protobufjs", "npm:7.5.8"],\
+          ["protobufjs", "npm:7.6.4"],\
           ["whatsapp-rust-bridge", "npm:0.5.3"],\
-          ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.20.1"]\
+          ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.21.0"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -202,10 +202,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@protobufjs/eventemitter", [\
-      ["npm:1.1.0", {\
-        "packageLocation": "../.yarn/berry/cache/@protobufjs-eventemitter-npm-1.1.0-029cc7d431-10c0.zip/node_modules/@protobufjs/eventemitter/",\
+      ["npm:1.1.1", {\
+        "packageLocation": "../.yarn/berry/cache/@protobufjs-eventemitter-npm-1.1.1-dbe0dfc812-10c0.zip/node_modules/@protobufjs/eventemitter/",\
         "packageDependencies": [\
-          ["@protobufjs/eventemitter", "npm:1.1.0"]\
+          ["@protobufjs/eventemitter", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -225,15 +225,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../.yarn/berry/cache/@protobufjs-float-npm-1.0.2-5678f64d08-10c0.zip/node_modules/@protobufjs/float/",\
         "packageDependencies": [\
           ["@protobufjs/float", "npm:1.0.2"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@protobufjs/inquire", [\
-      ["npm:1.1.1", {\
-        "packageLocation": "../.yarn/berry/cache/@protobufjs-inquire-npm-1.1.1-1f267bc97f-10c0.zip/node_modules/@protobufjs/inquire/",\
-        "packageDependencies": [\
-          ["@protobufjs/inquire", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -286,10 +277,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@types/node", [\
-      ["npm:25.8.0", {\
-        "packageLocation": "../.yarn/berry/cache/@types-node-npm-25.8.0-01bd3ab1bf-10c0.zip/node_modules/@types/node/",\
+      ["npm:25.9.3", {\
+        "packageLocation": "../.yarn/berry/cache/@types-node-npm-25.9.3-8c1909db0e-10c0.zip/node_modules/@types/node/",\
         "packageDependencies": [\
-          ["@types/node", "npm:25.8.0"],\
+          ["@types/node", "npm:25.9.3"],\
           ["undici-types", "npm:7.24.6"]\
         ],\
         "linkType": "HARD"\
@@ -340,10 +331,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["content-type", [\
-      ["npm:1.0.5", {\
-        "packageLocation": "../.yarn/berry/cache/content-type-npm-1.0.5-3e037bf9ab-10c0.zip/node_modules/content-type/",\
+      ["npm:2.0.0", {\
+        "packageLocation": "../.yarn/berry/cache/content-type-npm-2.0.0-c790197c3d-10c0.zip/node_modules/content-type/",\
         "packageDependencies": [\
-          ["content-type", "npm:1.0.5"]\
+          ["content-type", "npm:2.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -462,7 +453,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["curve25519-js", "npm:0.0.4"],\
           ["libsignal", "https://github.com/whiskeysockets/libsignal-node.git#commit=bcea72df9ec34d9d9140ab30619cf479c7c144c7"],\
-          ["protobufjs", "npm:7.5.8"]\
+          ["protobufjs", "npm:7.6.4"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -477,19 +468,19 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["lru-cache", [\
-      ["npm:11.3.6", {\
-        "packageLocation": "../.yarn/berry/cache/lru-cache-npm-11.3.6-a27889e3d2-10c0.zip/node_modules/lru-cache/",\
+      ["npm:11.5.1", {\
+        "packageLocation": "../.yarn/berry/cache/lru-cache-npm-11.5.1-8679877966-10c0.zip/node_modules/lru-cache/",\
         "packageDependencies": [\
-          ["lru-cache", "npm:11.3.6"]\
+          ["lru-cache", "npm:11.5.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["media-typer", [\
-      ["npm:1.1.0", {\
-        "packageLocation": "../.yarn/berry/cache/media-typer-npm-1.1.0-eccc8b846d-10c0.zip/node_modules/media-typer/",\
+      ["npm:2.0.0", {\
+        "packageLocation": "../.yarn/berry/cache/media-typer-npm-2.0.0-c597a6e807-10c0.zip/node_modules/media-typer/",\
         "packageDependencies": [\
-          ["media-typer", "npm:1.1.0"]\
+          ["media-typer", "npm:2.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -504,16 +495,16 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["music-metadata", [\
-      ["npm:11.12.3", {\
-        "packageLocation": "../.yarn/berry/cache/music-metadata-npm-11.12.3-b065e8c2e3-10c0.zip/node_modules/music-metadata/",\
+      ["npm:11.13.0", {\
+        "packageLocation": "../.yarn/berry/cache/music-metadata-npm-11.13.0-ef778e4bf3-10c0.zip/node_modules/music-metadata/",\
         "packageDependencies": [\
           ["@borewit/text-codec", "npm:0.2.2"],\
           ["@tokenizer/token", "npm:0.3.0"],\
-          ["content-type", "npm:1.0.5"],\
+          ["content-type", "npm:2.0.0"],\
           ["debug", "virtual:90a0f1fb5c11f2caeade015df18a36b1fbdd43c7dd5da4b8fc27a92da9a256be3f461a218d644a2c25bbbb94dccf8169d67cc52a5c2857f0f996be9f75f65682#npm:4.4.3"],\
           ["file-type", "npm:21.3.4"],\
-          ["media-typer", "npm:1.1.0"],\
-          ["music-metadata", "npm:11.12.3"],\
+          ["media-typer", "npm:2.0.0"],\
+          ["music-metadata", "npm:11.13.0"],\
           ["strtok3", "npm:10.3.5"],\
           ["token-types", "npm:6.1.2"],\
           ["uint8array-extras", "npm:1.5.0"],\
@@ -566,7 +557,7 @@ const RAW_RUNTIME_STATE =
           ["real-require", "npm:0.2.0"],\
           ["safe-stable-stringify", "npm:2.5.0"],\
           ["sonic-boom", "npm:4.2.1"],\
-          ["thread-stream", "npm:3.1.0"]\
+          ["thread-stream", "npm:3.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -600,22 +591,21 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["protobufjs", [\
-      ["npm:7.5.8", {\
-        "packageLocation": "./.yarn/unplugged/protobufjs-npm-7.5.8-a1ce3bc6d1/node_modules/protobufjs/",\
+      ["npm:7.6.4", {\
+        "packageLocation": "./.yarn/unplugged/protobufjs-npm-7.6.4-97603a5239/node_modules/protobufjs/",\
         "packageDependencies": [\
           ["@protobufjs/aspromise", "npm:1.1.2"],\
           ["@protobufjs/base64", "npm:1.1.2"],\
           ["@protobufjs/codegen", "npm:2.0.5"],\
-          ["@protobufjs/eventemitter", "npm:1.1.0"],\
+          ["@protobufjs/eventemitter", "npm:1.1.1"],\
           ["@protobufjs/fetch", "npm:1.1.1"],\
           ["@protobufjs/float", "npm:1.0.2"],\
-          ["@protobufjs/inquire", "npm:1.1.1"],\
           ["@protobufjs/path", "npm:1.1.2"],\
           ["@protobufjs/pool", "npm:1.1.0"],\
           ["@protobufjs/utf8", "npm:1.1.1"],\
-          ["@types/node", "npm:25.8.0"],\
+          ["@types/node", "npm:25.9.3"],\
           ["long", "npm:5.3.2"],\
-          ["protobufjs", "npm:7.5.8"]\
+          ["protobufjs", "npm:7.6.4"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -687,11 +677,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["thread-stream", [\
-      ["npm:3.1.0", {\
-        "packageLocation": "../.yarn/berry/cache/thread-stream-npm-3.1.0-ac5663dfb7-10c0.zip/node_modules/thread-stream/",\
+      ["npm:3.2.0", {\
+        "packageLocation": "../.yarn/berry/cache/thread-stream-npm-3.2.0-97ce3ed68b-10c0.zip/node_modules/thread-stream/",\
         "packageDependencies": [\
           ["real-require", "npm:0.2.0"],\
-          ["thread-stream", "npm:3.1.0"]\
+          ["thread-stream", "npm:3.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -754,21 +744,21 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["ws", [\
-      ["npm:8.20.1", {\
-        "packageLocation": "../.yarn/berry/cache/ws-npm-8.20.1-b0e0eae8d5-10c0.zip/node_modules/ws/",\
+      ["npm:8.21.0", {\
+        "packageLocation": "../.yarn/berry/cache/ws-npm-8.21.0-7629fe02dd-10c0.zip/node_modules/ws/",\
         "packageDependencies": [\
-          ["ws", "npm:8.20.1"]\
+          ["ws", "npm:8.21.0"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.20.1", {\
-        "packageLocation": "./.yarn/__virtual__/ws-virtual-073a2b0dc2/2/.yarn/berry/cache/ws-npm-8.20.1-b0e0eae8d5-10c0.zip/node_modules/ws/",\
+      ["virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.21.0", {\
+        "packageLocation": "./.yarn/__virtual__/ws-virtual-c479db265a/2/.yarn/berry/cache/ws-npm-8.21.0-7629fe02dd-10c0.zip/node_modules/ws/",\
         "packageDependencies": [\
           ["@types/bufferutil", null],\
           ["@types/utf-8-validate", null],\
           ["bufferutil", null],\
           ["utf-8-validate", null],\
-          ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.20.1"]\
+          ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.21.0"]\
         ],\
         "packagePeers": [\
           "@types/bufferutil",\
