@@ -1,3 +1,4 @@
+import { Boom } from '@hapi/boom';
 import { proto } from '../../WAProto/index.js';
 import type { GroupMetadata, ParticipantAction, SocketConfig, WAMessageKey } from '../Types/index.js';
 import { type BinaryNode } from '../WABinary/index.js';
