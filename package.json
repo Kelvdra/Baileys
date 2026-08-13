@@ -48,7 +48,7 @@
     "cheerio": "^1.2.0",
     "fflate": "^0.8.2",
     "gradient-string": "^3.0.0",
-    "libsignal": "npm:akaanakbaik/libsignal",
+    "libsignal": "npm:@akaanakbaik/libsignal",
     "lru-cache": "^11.1.0",
     "music-metadata": "^11.7.0",
     "p-queue": "^9.0.0",
