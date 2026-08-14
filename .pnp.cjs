@@ -39,7 +39,7 @@ const RAW_RUNTIME_STATE =
           ["cheerio", "npm:1.2.0"],\
           ["fflate", "npm:0.8.3"],\
           ["gradient-string", "npm:3.0.0"],\
-          ["libsignal", "https://github.com/whiskeysockets/libsignal-node.git#commit=bcea72df9ec34d9d9140ab30619cf479c7c144c7"],\
+          ["libsignal", "https://github.com/Kelvdra/libsignal.git#commit=f65c0ef8e084c925c7a79c63d5529a3eb650e02a"],\
           ["lru-cache", "npm:11.5.1"],\
           ["music-metadata", "npm:11.13.0"],\
           ["p-queue", "npm:9.3.0"],\
@@ -254,7 +254,7 @@ const RAW_RUNTIME_STATE =
           ["cheerio", "npm:1.2.0"],\
           ["fflate", "npm:0.8.3"],\
           ["gradient-string", "npm:3.0.0"],\
-          ["libsignal", "https://github.com/whiskeysockets/libsignal-node.git#commit=bcea72df9ec34d9d9140ab30619cf479c7c144c7"],\
+          ["libsignal", "https://github.com/Kelvdra/libsignal.git#commit=f65c0ef8e084c925c7a79c63d5529a3eb650e02a"],\
           ["lru-cache", "npm:11.5.1"],\
           ["music-metadata", "npm:11.13.0"],\
           ["p-queue", "npm:9.3.0"],\
@@ -1151,11 +1151,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["libsignal", [\
-      ["https://github.com/whiskeysockets/libsignal-node.git#commit=bcea72df9ec34d9d9140ab30619cf479c7c144c7", {\
-        "packageLocation": "../.yarn/berry/cache/libsignal-https-6221f98243-10c0.zip/node_modules/libsignal/",\
+      ["https://github.com/Kelvdra/libsignal.git#commit=f65c0ef8e084c925c7a79c63d5529a3eb650e02a", {\
+        "packageLocation": "../.yarn/berry/cache/libsignal-https-9c12647b66-10c0.zip/node_modules/libsignal/",\
         "packageDependencies": [\
           ["curve25519-js", "npm:0.0.4"],\
-          ["libsignal", "https://github.com/whiskeysockets/libsignal-node.git#commit=bcea72df9ec34d9d9140ab30619cf479c7c144c7"],\
+          ["libsignal", "https://github.com/Kelvdra/libsignal.git#commit=f65c0ef8e084c925c7a79c63d5529a3eb650e02a"],\
           ["protobufjs", "npm:7.6.4"]\
         ],\
         "linkType": "HARD"\

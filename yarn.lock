@@ -179,7 +179,7 @@ __metadata:
     cheerio: "npm:^1.2.0"
     fflate: "npm:^0.8.2"
     gradient-string: "npm:^3.0.0"
-    libsignal: "git+https://github.com/whiskeysockets/libsignal-node"
+    libsignal: "github:Kelvdra/libsignal"
     lru-cache: "npm:^11.1.0"
     music-metadata: "npm:^11.7.0"
     p-queue: "npm:^9.0.0"
@@ -936,13 +936,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"libsignal@git+https://github.com/whiskeysockets/libsignal-node":
-  version: 6.0.0
-  resolution: "libsignal@https://github.com/whiskeysockets/libsignal-node.git#commit=bcea72df9ec34d9d9140ab30619cf479c7c144c7"
+"libsignal@github:Kelvdra/libsignal":
+  version: 1.0.0
+  resolution: "libsignal@https://github.com/Kelvdra/libsignal.git#commit=f65c0ef8e084c925c7a79c63d5529a3eb650e02a"
   dependencies:
     curve25519-js: "npm:^0.0.4"
     protobufjs: "npm:^7.5.5"
-  checksum: 10c0/662c443c10f4b222799c792831ba0d32f742bc73cb82910194cc21e19397c54e7022726516759e816efe094284a3122b530582d574999ef3f27e940074c8ecb2
+  checksum: 10c0/479d28953c18b8e3e9ab05cf9a2288d74aa5a3a830c5a8644fdadc3803fd85436a3d3c3b056249559fb8758c0c841a518141ee21f0dfa97a73de969c58084bae
   languageName: node
   linkType: hard
 
