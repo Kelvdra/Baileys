@@ -1,7 +1,7 @@
 {
   "name": "@kelvdra/baileys",
   "type": "module",
-  "version": "1.0.5-rc.3",
+  "version": "1.0.6",
   "description": "Baileys fork whiskeysockets modified by kelvdra.",
   "keywords": [
     "baileys",
@@ -53,20 +53,44 @@
     "music-metadata": "^11.7.0",
     "p-queue": "^9.0.0",
     "pino": "^9.6",
-    "protobufjs": "^7.2.4",
+    "protobufjs": "^7.5.6",
     "whatsapp-rust-bridge": "0.5.2",
     "ws": "^8.13.0"
   },
   "peerDependencies": {
+    "better-sqlite3": "^11.0.0 || ^12.0.0 || ^13.0.0",
+    "fluent-ffmpeg": "*",
+    "ioredis": "^5.0.0",
     "jimp": "^1.6.0",
     "link-preview-js": "^3.0.0",
+    "mongodb": "^6.0.0",
+    "mysql2": "^3.0.0",
+    "pg": "^8.0.0",
     "sharp": "*"
   },
   "peerDependenciesMeta": {
+    "better-sqlite3": {
+      "optional": true
+    },
+    "fluent-ffmpeg": {
+      "optional": true
+    },
+    "ioredis": {
+      "optional": true
+    },
     "jimp": {
       "optional": true
     },
     "link-preview-js": {
+      "optional": true
+    },
+    "mongodb": {
+      "optional": true
+    },
+    "mysql2": {
+      "optional": true
+    },
+    "pg": {
       "optional": true
     }
   },

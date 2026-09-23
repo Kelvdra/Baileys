@@ -32,136 +32,278 @@ const RAW_RUNTIME_STATE =
           ["@hapi/boom", "npm:9.1.4"],\
           ["@kelvdra/baileys", "workspace:."],\
           ["async-mutex", "npm:0.5.0"],\
-          ["audio-decode", "npm:3.11.0"],\
-          ["axios", "npm:1.18.1"],\
+          ["audio-decode", "npm:3.12.0"],\
+          ["axios", "npm:1.20.0"],\
           ["cache-manager", "npm:5.7.6"],\
           ["chalk", "npm:5.6.2"],\
           ["cheerio", "npm:1.2.0"],\
           ["fflate", "npm:0.8.3"],\
           ["gradient-string", "npm:3.0.0"],\
           ["libsignal", "https://github.com/Kelvdra/libsignal.git#commit=f65c0ef8e084c925c7a79c63d5529a3eb650e02a"],\
-          ["lru-cache", "npm:11.5.1"],\
-          ["music-metadata", "npm:11.13.0"],\
-          ["p-queue", "npm:9.3.0"],\
+          ["lru-cache", "npm:11.5.2"],\
+          ["music-metadata", "npm:11.15.0"],\
+          ["p-queue", "npm:9.3.3"],\
           ["pino", "npm:9.14.0"],\
-          ["protobufjs", "npm:7.6.4"],\
+          ["protobufjs", "npm:7.6.6"],\
           ["whatsapp-rust-bridge", "npm:0.5.2"],\
-          ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.21.0"]\
+          ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.21.3"]\
         ],\
         "linkType": "SOFT"\
       }]\
     ]],\
-    ["@audio/decode-aac", [\
-      ["npm:1.2.0", {\
-        "packageLocation": "../.yarn/berry/cache/@audio-decode-aac-npm-1.2.0-3614f7fc2f-10c0.zip/node_modules/@audio/decode-aac/",\
+    ["@audio/decode", [\
+      ["npm:3.15.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-npm-3.15.0-b539556664-10c0.zip/node_modules/@audio/decode/",\
         "packageDependencies": [\
-          ["@audio/decode-aac", "npm:1.2.0"]\
+          ["@audio/decode", "npm:3.15.0"],\
+          ["@audio/decode-aac", "npm:1.5.0"],\
+          ["@audio/decode-ac3", "npm:1.0.0"],\
+          ["@audio/decode-aiff", "npm:1.3.0"],\
+          ["@audio/decode-amr", "npm:1.3.1"],\
+          ["@audio/decode-avi", "npm:1.1.0"],\
+          ["@audio/decode-caf", "npm:1.4.0"],\
+          ["@audio/decode-dsd", "npm:1.0.0"],\
+          ["@audio/decode-dts", "npm:1.0.0"],\
+          ["@audio/decode-flac", "npm:1.3.3"],\
+          ["@audio/decode-mod", "npm:1.0.0"],\
+          ["@audio/decode-mp3", "npm:1.3.1"],\
+          ["@audio/decode-mp4", "npm:1.1.1"],\
+          ["@audio/decode-mpc", "npm:1.0.0"],\
+          ["@audio/decode-opus", "npm:1.3.1"],\
+          ["@audio/decode-qoa", "npm:1.2.0"],\
+          ["@audio/decode-tta", "npm:1.0.0"],\
+          ["@audio/decode-vorbis", "npm:1.3.2"],\
+          ["@audio/decode-wav", "npm:1.5.0"],\
+          ["@audio/decode-wavpack", "npm:1.0.0"],\
+          ["@audio/decode-webm", "npm:1.6.1"],\
+          ["@audio/decode-wma", "npm:1.3.1"],\
+          ["audio-type", "npm:2.7.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@audio/decode-aac", [\
+      ["npm:1.5.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-aac-npm-1.5.0-fbad55dd88-10c0.zip/node_modules/@audio/decode-aac/",\
+        "packageDependencies": [\
+          ["@audio/decode-aac", "npm:1.5.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@audio/decode-ac3", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-ac3-npm-1.0.0-4d4f33f892-10c0.zip/node_modules/@audio/decode-ac3/",\
+        "packageDependencies": [\
+          ["@audio/decode-ac3", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@audio/decode-aiff", [\
-      ["npm:1.1.3", {\
-        "packageLocation": "../.yarn/berry/cache/@audio-decode-aiff-npm-1.1.3-faedea11fc-10c0.zip/node_modules/@audio/decode-aiff/",\
+      ["npm:1.3.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-aiff-npm-1.3.0-376099a1ef-10c0.zip/node_modules/@audio/decode-aiff/",\
         "packageDependencies": [\
-          ["@audio/decode-aiff", "npm:1.1.3"]\
+          ["@audio/decode-aiff", "npm:1.3.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@audio/decode-amr", [\
-      ["npm:1.1.1", {\
-        "packageLocation": "../.yarn/berry/cache/@audio-decode-amr-npm-1.1.1-c25f105aa4-10c0.zip/node_modules/@audio/decode-amr/",\
+      ["npm:1.3.1", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-amr-npm-1.3.1-c2e5867082-10c0.zip/node_modules/@audio/decode-amr/",\
         "packageDependencies": [\
-          ["@audio/decode-amr", "npm:1.1.1"]\
+          ["@audio/decode-amr", "npm:1.3.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@audio/decode-avi", [\
+      ["npm:1.1.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-avi-npm-1.1.0-76ba245a3d-10c0.zip/node_modules/@audio/decode-avi/",\
+        "packageDependencies": [\
+          ["@audio/decode-aac", "npm:1.5.0"],\
+          ["@audio/decode-ac3", "npm:1.0.0"],\
+          ["@audio/decode-avi", "npm:1.1.0"],\
+          ["@audio/decode-dts", "npm:1.0.0"],\
+          ["@audio/decode-mp3", "npm:1.3.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@audio/decode-caf", [\
-      ["npm:1.2.0", {\
-        "packageLocation": "../.yarn/berry/cache/@audio-decode-caf-npm-1.2.0-e91dd91501-10c0.zip/node_modules/@audio/decode-caf/",\
+      ["npm:1.4.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-caf-npm-1.4.0-cf5499a3d6-10c0.zip/node_modules/@audio/decode-caf/",\
         "packageDependencies": [\
-          ["@audio/decode-caf", "npm:1.2.0"]\
+          ["@audio/decode-caf", "npm:1.4.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@audio/decode-dsd", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-dsd-npm-1.0.0-d3f7110a06-10c0.zip/node_modules/@audio/decode-dsd/",\
+        "packageDependencies": [\
+          ["@audio/decode-dsd", "npm:1.0.0"],\
+          ["@audio/decode-mp3", "npm:1.3.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@audio/decode-dts", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-dts-npm-1.0.0-dce5c997cc-10c0.zip/node_modules/@audio/decode-dts/",\
+        "packageDependencies": [\
+          ["@audio/decode-dts", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@audio/decode-eac3", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-eac3-npm-1.0.0-5ac9df3c6e-10c0.zip/node_modules/@audio/decode-eac3/",\
+        "packageDependencies": [\
+          ["@audio/decode-eac3", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@audio/decode-flac", [\
-      ["npm:1.1.0", {\
-        "packageLocation": "../.yarn/berry/cache/@audio-decode-flac-npm-1.1.0-39e70b202d-10c0.zip/node_modules/@audio/decode-flac/",\
+      ["npm:1.3.3", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-flac-npm-1.3.3-8425c53460-10c0.zip/node_modules/@audio/decode-flac/",\
         "packageDependencies": [\
-          ["@audio/decode-flac", "npm:1.1.0"],\
-          ["@wasm-audio-decoders/flac", "npm:0.2.10"]\
+          ["@audio/decode-flac", "npm:1.3.3"],\
+          ["@wasm-audio-decoders/flac", "npm:0.2.11"],\
+          ["codec-parser", "npm:2.5.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@audio/decode-mod", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-mod-npm-1.0.0-f08cc153e5-10c0.zip/node_modules/@audio/decode-mod/",\
+        "packageDependencies": [\
+          ["@audio/decode-mod", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@audio/decode-mp3", [\
-      ["npm:1.1.0", {\
-        "packageLocation": "../.yarn/berry/cache/@audio-decode-mp3-npm-1.1.0-856de496c2-10c0.zip/node_modules/@audio/decode-mp3/",\
+      ["npm:1.3.1", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-mp3-npm-1.3.1-ea0aacec3e-10c0.zip/node_modules/@audio/decode-mp3/",\
         "packageDependencies": [\
-          ["@audio/decode-mp3", "npm:1.1.0"],\
+          ["@audio/decode-mp3", "npm:1.3.1"],\
           ["mpg123-decoder", "npm:1.0.3"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
-    ["@audio/decode-opus", [\
+    ["@audio/decode-mp4", [\
       ["npm:1.1.1", {\
-        "packageLocation": "../.yarn/berry/cache/@audio-decode-opus-npm-1.1.1-23d664a093-10c0.zip/node_modules/@audio/decode-opus/",\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-mp4-npm-1.1.1-3061c2ea34-10c0.zip/node_modules/@audio/decode-mp4/",\
         "packageDependencies": [\
-          ["@audio/decode-opus", "npm:1.1.1"],\
-          ["ogg-opus-decoder", "npm:1.7.3"]\
+          ["@audio/decode-aac", "npm:1.5.0"],\
+          ["@audio/decode-ac3", "npm:1.0.0"],\
+          ["@audio/decode-amr", "npm:1.3.1"],\
+          ["@audio/decode-dts", "npm:1.0.0"],\
+          ["@audio/decode-eac3", "npm:1.0.0"],\
+          ["@audio/decode-flac", "npm:1.3.3"],\
+          ["@audio/decode-mp3", "npm:1.3.1"],\
+          ["@audio/decode-mp4", "npm:1.1.1"],\
+          ["@audio/decode-opus", "npm:1.3.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@audio/decode-mpc", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-mpc-npm-1.0.0-4df5196f91-10c0.zip/node_modules/@audio/decode-mpc/",\
+        "packageDependencies": [\
+          ["@audio/decode-mpc", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@audio/decode-opus", [\
+      ["npm:1.3.1", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-opus-npm-1.3.1-55482b4972-10c0.zip/node_modules/@audio/decode-opus/",\
+        "packageDependencies": [\
+          ["@audio/decode-opus", "npm:1.3.1"],\
+          ["codec-parser", "npm:2.5.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@audio/decode-qoa", [\
-      ["npm:1.0.0", {\
-        "packageLocation": "../.yarn/berry/cache/@audio-decode-qoa-npm-1.0.0-1f02bd8275-10c0.zip/node_modules/@audio/decode-qoa/",\
+      ["npm:1.2.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-qoa-npm-1.2.0-7c8f1cdbd5-10c0.zip/node_modules/@audio/decode-qoa/",\
         "packageDependencies": [\
-          ["@audio/decode-qoa", "npm:1.0.0"],\
+          ["@audio/decode-qoa", "npm:1.2.0"],\
           ["qoa-format", "npm:1.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
-    ["@audio/decode-vorbis", [\
-      ["npm:1.1.1", {\
-        "packageLocation": "../.yarn/berry/cache/@audio-decode-vorbis-npm-1.1.1-cd9beedc54-10c0.zip/node_modules/@audio/decode-vorbis/",\
+    ["@audio/decode-tta", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-tta-npm-1.0.0-72696eda74-10c0.zip/node_modules/@audio/decode-tta/",\
         "packageDependencies": [\
-          ["@audio/decode-vorbis", "npm:1.1.1"],\
-          ["@wasm-audio-decoders/ogg-vorbis", "npm:0.1.20"]\
+          ["@audio/decode-tta", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@audio/decode-vorbis", [\
+      ["npm:1.3.2", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-vorbis-npm-1.3.2-ea42699748-10c0.zip/node_modules/@audio/decode-vorbis/",\
+        "packageDependencies": [\
+          ["@audio/decode-vorbis", "npm:1.3.2"],\
+          ["@wasm-audio-decoders/ogg-vorbis", "npm:0.1.20"],\
+          ["codec-parser", "npm:2.5.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@audio/decode-wav", [\
-      ["npm:1.3.0", {\
-        "packageLocation": "../.yarn/berry/cache/@audio-decode-wav-npm-1.3.0-3f7f9c7192-10c0.zip/node_modules/@audio/decode-wav/",\
+      ["npm:1.5.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-wav-npm-1.5.0-e6bd59f453-10c0.zip/node_modules/@audio/decode-wav/",\
         "packageDependencies": [\
-          ["@audio/decode-wav", "npm:1.3.0"]\
+          ["@audio/decode-wav", "npm:1.5.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@audio/decode-wavpack", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-wavpack-npm-1.0.0-ef11f2fd50-10c0.zip/node_modules/@audio/decode-wavpack/",\
+        "packageDependencies": [\
+          ["@audio/decode-wavpack", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@audio/decode-webm", [\
-      ["npm:1.2.1", {\
-        "packageLocation": "../.yarn/berry/cache/@audio-decode-webm-npm-1.2.1-ff87537777-10c0.zip/node_modules/@audio/decode-webm/",\
+      ["npm:1.6.1", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-webm-npm-1.6.1-00bbb1e88f-10c0.zip/node_modules/@audio/decode-webm/",\
         "packageDependencies": [\
-          ["@audio/decode-webm", "npm:1.2.1"],\
-          ["@wasm-audio-decoders/ogg-vorbis", "npm:0.1.20"],\
-          ["opus-decoder", "npm:0.7.11"]\
+          ["@audio/decode-aac", "npm:1.5.0"],\
+          ["@audio/decode-ac3", "npm:1.0.0"],\
+          ["@audio/decode-dts", "npm:1.0.0"],\
+          ["@audio/decode-eac3", "npm:1.0.0"],\
+          ["@audio/decode-flac", "npm:1.3.3"],\
+          ["@audio/decode-mp3", "npm:1.3.1"],\
+          ["@audio/decode-opus", "npm:1.3.1"],\
+          ["@audio/decode-vorbis", "npm:1.3.2"],\
+          ["@audio/decode-webm", "npm:1.6.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@audio/decode-wma", [\
-      ["npm:1.1.2", {\
-        "packageLocation": "../.yarn/berry/cache/@audio-decode-wma-npm-1.1.2-34ffe6cc2b-10c0.zip/node_modules/@audio/decode-wma/",\
+      ["npm:1.3.1", {\
+        "packageLocation": "../.yarn/berry/cache/@audio-decode-wma-npm-1.3.1-8e40115e9a-10c0.zip/node_modules/@audio/decode-wma/",\
         "packageDependencies": [\
-          ["@audio/decode-wma", "npm:1.1.2"]\
+          ["@audio/decode-wma", "npm:1.3.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -176,12 +318,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@cacheable/memory", [\
-      ["npm:2.0.9", {\
-        "packageLocation": "../.yarn/berry/cache/@cacheable-memory-npm-2.0.9-eb565b2b18-10c0.zip/node_modules/@cacheable/memory/",\
+      ["npm:2.2.0", {\
+        "packageLocation": "../.yarn/berry/cache/@cacheable-memory-npm-2.2.0-ddf67704fd-10c0.zip/node_modules/@cacheable/memory/",\
         "packageDependencies": [\
-          ["@cacheable/memory", "npm:2.0.9"],\
-          ["@cacheable/utils", "npm:2.4.1"],\
-          ["@keyv/bigmap", "virtual:eb565b2b18174e552f1733a8be9951cd02956ad5b11d8cc93667de4a56f546d6bc6e6283ca22b70a8fcee45e065b502c17b20d6aa1d287023f3bbc5b5a74d1be#npm:1.3.1"],\
+          ["@cacheable/memory", "npm:2.2.0"],\
+          ["@cacheable/utils", "npm:2.5.0"],\
+          ["@keyv/bigmap", "virtual:ddf67704fd8c812db82336daa78e1f232272ce74c8260f82a10373d549ee1053cf001a624b06a34d03ba3867a594d18f504d8b9412c39c2113f9bd6db3852482#npm:1.3.1"],\
           ["hookified", "npm:1.15.1"],\
           ["keyv", "npm:5.6.0"]\
         ],\
@@ -193,7 +335,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../.yarn/berry/cache/@cacheable-node-cache-npm-1.7.6-b9c5618064-10c0.zip/node_modules/@cacheable/node-cache/",\
         "packageDependencies": [\
           ["@cacheable/node-cache", "npm:1.7.6"],\
-          ["cacheable", "npm:2.3.5"],\
+          ["cacheable", "npm:2.5.0"],\
           ["hookified", "npm:1.15.1"],\
           ["keyv", "npm:5.6.0"]\
         ],\
@@ -201,10 +343,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@cacheable/utils", [\
-      ["npm:2.4.1", {\
-        "packageLocation": "../.yarn/berry/cache/@cacheable-utils-npm-2.4.1-a467278f7c-10c0.zip/node_modules/@cacheable/utils/",\
+      ["npm:2.5.0", {\
+        "packageLocation": "../.yarn/berry/cache/@cacheable-utils-npm-2.5.0-eabffdcc3b-10c0.zip/node_modules/@cacheable/utils/",\
         "packageDependencies": [\
-          ["@cacheable/utils", "npm:2.4.1"],\
+          ["@cacheable/utils", "npm:2.5.0"],\
           ["hashery", "npm:1.5.1"],\
           ["keyv", "npm:5.6.0"]\
         ],\
@@ -247,21 +389,21 @@ const RAW_RUNTIME_STATE =
           ["@hapi/boom", "npm:9.1.4"],\
           ["@kelvdra/baileys", "workspace:."],\
           ["async-mutex", "npm:0.5.0"],\
-          ["audio-decode", "npm:3.11.0"],\
-          ["axios", "npm:1.18.1"],\
+          ["audio-decode", "npm:3.12.0"],\
+          ["axios", "npm:1.20.0"],\
           ["cache-manager", "npm:5.7.6"],\
           ["chalk", "npm:5.6.2"],\
           ["cheerio", "npm:1.2.0"],\
           ["fflate", "npm:0.8.3"],\
           ["gradient-string", "npm:3.0.0"],\
           ["libsignal", "https://github.com/Kelvdra/libsignal.git#commit=f65c0ef8e084c925c7a79c63d5529a3eb650e02a"],\
-          ["lru-cache", "npm:11.5.1"],\
-          ["music-metadata", "npm:11.13.0"],\
-          ["p-queue", "npm:9.3.0"],\
+          ["lru-cache", "npm:11.5.2"],\
+          ["music-metadata", "npm:11.15.0"],\
+          ["p-queue", "npm:9.3.3"],\
           ["pino", "npm:9.14.0"],\
-          ["protobufjs", "npm:7.6.4"],\
+          ["protobufjs", "npm:7.6.6"],\
           ["whatsapp-rust-bridge", "npm:0.5.2"],\
-          ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.21.0"]\
+          ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.21.3"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -274,10 +416,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:eb565b2b18174e552f1733a8be9951cd02956ad5b11d8cc93667de4a56f546d6bc6e6283ca22b70a8fcee45e065b502c17b20d6aa1d287023f3bbc5b5a74d1be#npm:1.3.1", {\
-        "packageLocation": "./.yarn/__virtual__/@keyv-bigmap-virtual-2fde98517f/2/.yarn/berry/cache/@keyv-bigmap-npm-1.3.1-ed980a7704-10c0.zip/node_modules/@keyv/bigmap/",\
+      ["virtual:ddf67704fd8c812db82336daa78e1f232272ce74c8260f82a10373d549ee1053cf001a624b06a34d03ba3867a594d18f504d8b9412c39c2113f9bd6db3852482#npm:1.3.1", {\
+        "packageLocation": "./.yarn/__virtual__/@keyv-bigmap-virtual-e64687d555/2/.yarn/berry/cache/@keyv-bigmap-npm-1.3.1-ed980a7704-10c0.zip/node_modules/@keyv/bigmap/",\
         "packageDependencies": [\
-          ["@keyv/bigmap", "virtual:eb565b2b18174e552f1733a8be9951cd02956ad5b11d8cc93667de4a56f546d6bc6e6283ca22b70a8fcee45e065b502c17b20d6aa1d287023f3bbc5b5a74d1be#npm:1.3.1"],\
+          ["@keyv/bigmap", "virtual:ddf67704fd8c812db82336daa78e1f232272ce74c8260f82a10373d549ee1053cf001a624b06a34d03ba3867a594d18f504d8b9412c39c2113f9bd6db3852482#npm:1.3.1"],\
           ["@types/keyv", null],\
           ["hashery", "npm:1.5.1"],\
           ["hookified", "npm:1.15.1"],\
@@ -382,29 +524,29 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@protobufjs/utf8", [\
-      ["npm:1.1.1", {\
-        "packageLocation": "../.yarn/berry/cache/@protobufjs-utf8-npm-1.1.1-77a500f5e9-10c0.zip/node_modules/@protobufjs/utf8/",\
+      ["npm:1.1.2", {\
+        "packageLocation": "../.yarn/berry/cache/@protobufjs-utf8-npm-1.1.2-9c7ca5968f-10c0.zip/node_modules/@protobufjs/utf8/",\
         "packageDependencies": [\
-          ["@protobufjs/utf8", "npm:1.1.1"]\
+          ["@protobufjs/utf8", "npm:1.1.2"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@thi.ng/bitstream", [\
-      ["npm:2.4.54", {\
-        "packageLocation": "../.yarn/berry/cache/@thi.ng-bitstream-npm-2.4.54-805e33ed48-10c0.zip/node_modules/@thi.ng/bitstream/",\
+      ["npm:2.4.55", {\
+        "packageLocation": "../.yarn/berry/cache/@thi.ng-bitstream-npm-2.4.55-b925800142-10c0.zip/node_modules/@thi.ng/bitstream/",\
         "packageDependencies": [\
-          ["@thi.ng/bitstream", "npm:2.4.54"],\
-          ["@thi.ng/errors", "npm:2.6.16"]\
+          ["@thi.ng/bitstream", "npm:2.4.55"],\
+          ["@thi.ng/errors", "npm:2.6.17"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@thi.ng/errors", [\
-      ["npm:2.6.16", {\
-        "packageLocation": "../.yarn/berry/cache/@thi.ng-errors-npm-2.6.16-fb39b06832-10c0.zip/node_modules/@thi.ng/errors/",\
+      ["npm:2.6.17", {\
+        "packageLocation": "../.yarn/berry/cache/@thi.ng-errors-npm-2.6.17-7b98079434-10c0.zip/node_modules/@thi.ng/errors/",\
         "packageDependencies": [\
-          ["@thi.ng/errors", "npm:2.6.16"]\
+          ["@thi.ng/errors", "npm:2.6.17"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -430,11 +572,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@types/node", [\
-      ["npm:25.9.3", {\
-        "packageLocation": "../.yarn/berry/cache/@types-node-npm-25.9.3-8c1909db0e-10c0.zip/node_modules/@types/node/",\
+      ["npm:26.5.1", {\
+        "packageLocation": "../.yarn/berry/cache/@types-node-npm-26.5.1-79b40849bc-10c0.zip/node_modules/@types/node/",\
         "packageDependencies": [\
-          ["@types/node", "npm:25.9.3"],\
-          ["undici-types", "npm:7.24.6"]\
+          ["@types/node", "npm:26.5.1"],\
+          ["undici-types", "npm:8.9.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -460,11 +602,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@wasm-audio-decoders/flac", [\
-      ["npm:0.2.10", {\
-        "packageLocation": "../.yarn/berry/cache/@wasm-audio-decoders-flac-npm-0.2.10-6861fb78eb-10c0.zip/node_modules/@wasm-audio-decoders/flac/",\
+      ["npm:0.2.11", {\
+        "packageLocation": "../.yarn/berry/cache/@wasm-audio-decoders-flac-npm-0.2.11-6d29a29bad-10c0.zip/node_modules/@wasm-audio-decoders/flac/",\
         "packageDependencies": [\
           ["@wasm-audio-decoders/common", "npm:9.0.7"],\
-          ["@wasm-audio-decoders/flac", "npm:0.2.10"],\
+          ["@wasm-audio-decoders/flac", "npm:0.2.11"],\
           ["codec-parser", "npm:2.5.0"]\
         ],\
         "linkType": "HARD"\
@@ -477,16 +619,6 @@ const RAW_RUNTIME_STATE =
           ["@wasm-audio-decoders/common", "npm:9.0.7"],\
           ["@wasm-audio-decoders/ogg-vorbis", "npm:0.1.20"],\
           ["codec-parser", "npm:2.5.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@wasm-audio-decoders/opus-ml", [\
-      ["npm:0.0.2", {\
-        "packageLocation": "../.yarn/berry/cache/@wasm-audio-decoders-opus-ml-npm-0.0.2-af3bd2a78c-10c0.zip/node_modules/@wasm-audio-decoders/opus-ml/",\
-        "packageDependencies": [\
-          ["@wasm-audio-decoders/common", "npm:9.0.7"],\
-          ["@wasm-audio-decoders/opus-ml", "npm:0.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -548,42 +680,30 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["audio-decode", [\
-      ["npm:3.11.0", {\
-        "packageLocation": "../.yarn/berry/cache/audio-decode-npm-3.11.0-b10ec3ce28-10c0.zip/node_modules/audio-decode/",\
+      ["npm:3.12.0", {\
+        "packageLocation": "../.yarn/berry/cache/audio-decode-npm-3.12.0-76aa8caac7-10c0.zip/node_modules/audio-decode/",\
         "packageDependencies": [\
-          ["@audio/decode-aac", "npm:1.2.0"],\
-          ["@audio/decode-aiff", "npm:1.1.3"],\
-          ["@audio/decode-amr", "npm:1.1.1"],\
-          ["@audio/decode-caf", "npm:1.2.0"],\
-          ["@audio/decode-flac", "npm:1.1.0"],\
-          ["@audio/decode-mp3", "npm:1.1.0"],\
-          ["@audio/decode-opus", "npm:1.1.1"],\
-          ["@audio/decode-qoa", "npm:1.0.0"],\
-          ["@audio/decode-vorbis", "npm:1.1.1"],\
-          ["@audio/decode-wav", "npm:1.3.0"],\
-          ["@audio/decode-webm", "npm:1.2.1"],\
-          ["@audio/decode-wma", "npm:1.1.2"],\
-          ["audio-decode", "npm:3.11.0"],\
-          ["audio-type", "npm:2.4.1"]\
+          ["@audio/decode", "npm:3.15.0"],\
+          ["audio-decode", "npm:3.12.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["audio-type", [\
-      ["npm:2.4.1", {\
-        "packageLocation": "../.yarn/berry/cache/audio-type-npm-2.4.1-f1258f7627-10c0.zip/node_modules/audio-type/",\
+      ["npm:2.7.0", {\
+        "packageLocation": "../.yarn/berry/cache/audio-type-npm-2.7.0-9cf0227c8a-10c0.zip/node_modules/audio-type/",\
         "packageDependencies": [\
-          ["audio-type", "npm:2.4.1"]\
+          ["audio-type", "npm:2.7.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["axios", [\
-      ["npm:1.18.1", {\
-        "packageLocation": "../.yarn/berry/cache/axios-npm-1.18.1-cfe396e04f-10c0.zip/node_modules/axios/",\
+      ["npm:1.20.0", {\
+        "packageLocation": "../.yarn/berry/cache/axios-npm-1.20.0-0de8ee0ccf-10c0.zip/node_modules/axios/",\
         "packageDependencies": [\
-          ["axios", "npm:1.18.1"],\
-          ["follow-redirects", "virtual:cfe396e04f9d811fe025e61204c45b20fa95aeeb72f863d9cf0f07aec679067f9a0d2fe39eb3c317aeb8b92b549644483d65f5e97851fa03255f800f31d04eff#npm:1.16.0"],\
+          ["axios", "npm:1.20.0"],\
+          ["follow-redirects", "virtual:0de8ee0ccf1cc6d6d0ba568f07319c0f67fa0587ed0ac4847469c623cd8d5cd1beffd54aecdb94df90e216359637d89e7519a1d553a93edace44300538549c89#npm:1.16.0"],\
           ["form-data", "npm:4.0.6"],\
           ["https-proxy-agent", "npm:5.0.1"],\
           ["proxy-from-env", "npm:2.1.0"]\
@@ -614,12 +734,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["cacheable", [\
-      ["npm:2.3.5", {\
-        "packageLocation": "../.yarn/berry/cache/cacheable-npm-2.3.5-19e1eb5818-10c0.zip/node_modules/cacheable/",\
+      ["npm:2.5.0", {\
+        "packageLocation": "../.yarn/berry/cache/cacheable-npm-2.5.0-7c27151acf-10c0.zip/node_modules/cacheable/",\
         "packageDependencies": [\
-          ["@cacheable/memory", "npm:2.0.9"],\
-          ["@cacheable/utils", "npm:2.4.1"],\
-          ["cacheable", "npm:2.3.5"],\
+          ["@cacheable/memory", "npm:2.2.0"],\
+          ["@cacheable/utils", "npm:2.5.0"],\
+          ["cacheable", "npm:2.5.0"],\
           ["hookified", "npm:1.15.1"],\
           ["keyv", "npm:5.6.0"],\
           ["qified", "npm:0.10.1"]\
@@ -661,7 +781,7 @@ const RAW_RUNTIME_STATE =
           ["parse5", "npm:7.3.0"],\
           ["parse5-htmlparser2-tree-adapter", "npm:7.1.0"],\
           ["parse5-parser-stream", "npm:7.1.2"],\
-          ["undici", "npm:7.28.0"],\
+          ["undici", "npm:7.29.1"],\
           ["whatwg-mimetype", "npm:4.0.0"]\
         ],\
         "linkType": "HARD"\
@@ -702,10 +822,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["content-type", [\
-      ["npm:2.0.0", {\
-        "packageLocation": "../.yarn/berry/cache/content-type-npm-2.0.0-c790197c3d-10c0.zip/node_modules/content-type/",\
+      ["npm:2.1.0", {\
+        "packageLocation": "../.yarn/berry/cache/content-type-npm-2.1.0-c765f38799-10c0.zip/node_modules/content-type/",\
         "packageDependencies": [\
-          ["content-type", "npm:2.0.0"]\
+          ["content-type", "npm:2.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -943,12 +1063,12 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:cfe396e04f9d811fe025e61204c45b20fa95aeeb72f863d9cf0f07aec679067f9a0d2fe39eb3c317aeb8b92b549644483d65f5e97851fa03255f800f31d04eff#npm:1.16.0", {\
-        "packageLocation": "./.yarn/__virtual__/follow-redirects-virtual-5a01cb4fdb/2/.yarn/berry/cache/follow-redirects-npm-1.16.0-816e4f62d9-10c0.zip/node_modules/follow-redirects/",\
+      ["virtual:0de8ee0ccf1cc6d6d0ba568f07319c0f67fa0587ed0ac4847469c623cd8d5cd1beffd54aecdb94df90e216359637d89e7519a1d553a93edace44300538549c89#npm:1.16.0", {\
+        "packageLocation": "./.yarn/__virtual__/follow-redirects-virtual-a0803d1185/2/.yarn/berry/cache/follow-redirects-npm-1.16.0-816e4f62d9-10c0.zip/node_modules/follow-redirects/",\
         "packageDependencies": [\
           ["@types/debug", null],\
           ["debug", null],\
-          ["follow-redirects", "virtual:cfe396e04f9d811fe025e61204c45b20fa95aeeb72f863d9cf0f07aec679067f9a0d2fe39eb3c317aeb8b92b549644483d65f5e97851fa03255f800f31d04eff#npm:1.16.0"]\
+          ["follow-redirects", "virtual:0de8ee0ccf1cc6d6d0ba568f07319c0f67fa0587ed0ac4847469c623cd8d5cd1beffd54aecdb94df90e216359637d89e7519a1d553a93edace44300538549c89#npm:1.16.0"]\
         ],\
         "packagePeers": [\
           "@types/debug",\
@@ -1156,7 +1276,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["curve25519-js", "npm:0.0.4"],\
           ["libsignal", "https://github.com/Kelvdra/libsignal.git#commit=f65c0ef8e084c925c7a79c63d5529a3eb650e02a"],\
-          ["protobufjs", "npm:7.6.4"]\
+          ["protobufjs", "npm:7.6.6"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1187,10 +1307,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["npm:11.5.1", {\
-        "packageLocation": "../.yarn/berry/cache/lru-cache-npm-11.5.1-8679877966-10c0.zip/node_modules/lru-cache/",\
+      ["npm:11.5.2", {\
+        "packageLocation": "../.yarn/berry/cache/lru-cache-npm-11.5.2-4d882549c7-10c0.zip/node_modules/lru-cache/",\
         "packageDependencies": [\
-          ["lru-cache", "npm:11.5.1"]\
+          ["lru-cache", "npm:11.5.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1252,16 +1372,16 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["music-metadata", [\
-      ["npm:11.13.0", {\
-        "packageLocation": "../.yarn/berry/cache/music-metadata-npm-11.13.0-ef778e4bf3-10c0.zip/node_modules/music-metadata/",\
+      ["npm:11.15.0", {\
+        "packageLocation": "../.yarn/berry/cache/music-metadata-npm-11.15.0-c7cf82bb7f-10c0.zip/node_modules/music-metadata/",\
         "packageDependencies": [\
           ["@borewit/text-codec", "npm:0.2.2"],\
           ["@tokenizer/token", "npm:0.3.0"],\
-          ["content-type", "npm:2.0.0"],\
+          ["content-type", "npm:2.1.0"],\
           ["debug", "virtual:428f325a939c2653ad822eb3d75efb02ac311523dd0d4f9645afc39ea00bd86eceac35a9d59c9b6977d76b670a4ef0ae057ea572338a44729aa592711a8c05a3#npm:4.4.3"],\
           ["file-type", "npm:21.3.4"],\
           ["media-typer", "npm:2.0.0"],\
-          ["music-metadata", "npm:11.13.0"],\
+          ["music-metadata", "npm:11.15.0"],\
           ["strtok3", "npm:10.3.5"],\
           ["token-types", "npm:6.1.2"],\
           ["uint8array-extras", "npm:1.5.0"],\
@@ -1280,19 +1400,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["ogg-opus-decoder", [\
-      ["npm:1.7.3", {\
-        "packageLocation": "../.yarn/berry/cache/ogg-opus-decoder-npm-1.7.3-830ef074bf-10c0.zip/node_modules/ogg-opus-decoder/",\
-        "packageDependencies": [\
-          ["@wasm-audio-decoders/common", "npm:9.0.7"],\
-          ["@wasm-audio-decoders/opus-ml", "npm:0.0.2"],\
-          ["codec-parser", "npm:2.5.0"],\
-          ["ogg-opus-decoder", "npm:1.7.3"],\
-          ["opus-decoder", "npm:0.7.11"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["on-exit-leak-free", [\
       ["npm:2.1.2", {\
         "packageLocation": "../.yarn/berry/cache/on-exit-leak-free-npm-2.1.2-0d0c5ad67d-10c0.zip/node_modules/on-exit-leak-free/",\
@@ -1302,32 +1409,22 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["opus-decoder", [\
-      ["npm:0.7.11", {\
-        "packageLocation": "../.yarn/berry/cache/opus-decoder-npm-0.7.11-4921bd9b59-10c0.zip/node_modules/opus-decoder/",\
-        "packageDependencies": [\
-          ["@wasm-audio-decoders/common", "npm:9.0.7"],\
-          ["opus-decoder", "npm:0.7.11"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["p-queue", [\
-      ["npm:9.3.0", {\
-        "packageLocation": "../.yarn/berry/cache/p-queue-npm-9.3.0-c121517cdd-10c0.zip/node_modules/p-queue/",\
+      ["npm:9.3.3", {\
+        "packageLocation": "../.yarn/berry/cache/p-queue-npm-9.3.3-8e5acfc209-10c0.zip/node_modules/p-queue/",\
         "packageDependencies": [\
           ["eventemitter3", "npm:5.0.4"],\
-          ["p-queue", "npm:9.3.0"],\
-          ["p-timeout", "npm:7.0.1"]\
+          ["p-queue", "npm:9.3.3"],\
+          ["p-timeout", "npm:7.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["p-timeout", [\
-      ["npm:7.0.1", {\
-        "packageLocation": "../.yarn/berry/cache/p-timeout-npm-7.0.1-3a2b4a11cc-10c0.zip/node_modules/p-timeout/",\
+      ["npm:7.0.2", {\
+        "packageLocation": "../.yarn/berry/cache/p-timeout-npm-7.0.2-38cad75fd2-10c0.zip/node_modules/p-timeout/",\
         "packageDependencies": [\
-          ["p-timeout", "npm:7.0.1"]\
+          ["p-timeout", "npm:7.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1373,7 +1470,7 @@ const RAW_RUNTIME_STATE =
           ["pino", "npm:9.14.0"],\
           ["pino-abstract-transport", "npm:2.0.0"],\
           ["pino-std-serializers", "npm:7.1.0"],\
-          ["process-warning", "npm:5.0.0"],\
+          ["process-warning", "npm:5.1.0"],\
           ["quick-format-unescaped", "npm:4.0.4"],\
           ["real-require", "npm:0.2.0"],\
           ["safe-stable-stringify", "npm:2.5.0"],\
@@ -1403,10 +1500,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["process-warning", [\
-      ["npm:5.0.0", {\
-        "packageLocation": "../.yarn/berry/cache/process-warning-npm-5.0.0-7999058ecd-10c0.zip/node_modules/process-warning/",\
+      ["npm:5.1.0", {\
+        "packageLocation": "../.yarn/berry/cache/process-warning-npm-5.1.0-66e4e547ca-10c0.zip/node_modules/process-warning/",\
         "packageDependencies": [\
-          ["process-warning", "npm:5.0.0"]\
+          ["process-warning", "npm:5.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1421,8 +1518,8 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["protobufjs", [\
-      ["npm:7.6.4", {\
-        "packageLocation": "./.yarn/unplugged/protobufjs-npm-7.6.4-97603a5239/node_modules/protobufjs/",\
+      ["npm:7.6.6", {\
+        "packageLocation": "./.yarn/unplugged/protobufjs-npm-7.6.6-a7cfb0c5d5/node_modules/protobufjs/",\
         "packageDependencies": [\
           ["@protobufjs/aspromise", "npm:1.1.2"],\
           ["@protobufjs/base64", "npm:1.1.2"],\
@@ -1432,10 +1529,10 @@ const RAW_RUNTIME_STATE =
           ["@protobufjs/float", "npm:1.0.2"],\
           ["@protobufjs/path", "npm:1.1.2"],\
           ["@protobufjs/pool", "npm:1.1.0"],\
-          ["@protobufjs/utf8", "npm:1.1.1"],\
-          ["@types/node", "npm:25.9.3"],\
+          ["@protobufjs/utf8", "npm:1.1.2"],\
+          ["@types/node", "npm:26.5.1"],\
           ["long", "npm:5.3.2"],\
-          ["protobufjs", "npm:7.6.4"]\
+          ["protobufjs", "npm:7.6.6"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1463,7 +1560,7 @@ const RAW_RUNTIME_STATE =
       ["npm:1.0.1", {\
         "packageLocation": "../.yarn/berry/cache/qoa-format-npm-1.0.1-3714ff116e-10c0.zip/node_modules/qoa-format/",\
         "packageDependencies": [\
-          ["@thi.ng/bitstream", "npm:2.4.54"],\
+          ["@thi.ng/bitstream", "npm:2.4.55"],\
           ["qoa-format", "npm:1.0.1"]\
         ],\
         "linkType": "HARD"\
@@ -1604,19 +1701,19 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["undici", [\
-      ["npm:7.28.0", {\
-        "packageLocation": "../.yarn/berry/cache/undici-npm-7.28.0-69d45b4a22-10c0.zip/node_modules/undici/",\
+      ["npm:7.29.1", {\
+        "packageLocation": "../.yarn/berry/cache/undici-npm-7.29.1-e8955914fd-10c0.zip/node_modules/undici/",\
         "packageDependencies": [\
-          ["undici", "npm:7.28.0"]\
+          ["undici", "npm:7.29.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["undici-types", [\
-      ["npm:7.24.6", {\
-        "packageLocation": "../.yarn/berry/cache/undici-types-npm-7.24.6-8759b28e34-10c0.zip/node_modules/undici-types/",\
+      ["npm:8.9.0", {\
+        "packageLocation": "../.yarn/berry/cache/undici-types-npm-8.9.0-c5953f392d-10c0.zip/node_modules/undici-types/",\
         "packageDependencies": [\
-          ["undici-types", "npm:7.24.6"]\
+          ["undici-types", "npm:8.9.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1659,21 +1756,21 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["ws", [\
-      ["npm:8.21.0", {\
-        "packageLocation": "../.yarn/berry/cache/ws-npm-8.21.0-7629fe02dd-10c0.zip/node_modules/ws/",\
+      ["npm:8.21.3", {\
+        "packageLocation": "../.yarn/berry/cache/ws-npm-8.21.3-63c47e1f60-10c0.zip/node_modules/ws/",\
         "packageDependencies": [\
-          ["ws", "npm:8.21.0"]\
+          ["ws", "npm:8.21.3"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.21.0", {\
-        "packageLocation": "./.yarn/__virtual__/ws-virtual-c479db265a/2/.yarn/berry/cache/ws-npm-8.21.0-7629fe02dd-10c0.zip/node_modules/ws/",\
+      ["virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.21.3", {\
+        "packageLocation": "./.yarn/__virtual__/ws-virtual-4330adb90e/2/.yarn/berry/cache/ws-npm-8.21.3-63c47e1f60-10c0.zip/node_modules/ws/",\
         "packageDependencies": [\
           ["@types/bufferutil", null],\
           ["@types/utf-8-validate", null],\
           ["bufferutil", null],\
           ["utf-8-validate", null],\
-          ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.21.0"]\
+          ["ws", "virtual:703ce45c5c03283328162cf4734f9007a6f9b70b80001eb5bb21fdc48e813d78596d42369fa88cc8298434b7669a0df09be1cca778dfa1086f9f2eb5599509fe#npm:8.21.3"]\
         ],\
         "packagePeers": [\
           "@types/bufferutil",\
