@@ -3,7 +3,7 @@
 # 📘 Dokumentasi `@kelvdra/baileys`
 
 > Fork Baileys (WhiskeySockets) yang dimodifikasi oleh **Kelvdra**.
-> Versi paket: `1.0.6` · Modul: **ESM** · Node.js **≥ 20** · Lisensi: MIT
+> Versi paket: `latest` · Modul: **ESM** · Node.js **≥ 20** · Lisensi: MIT
 
 **Catatan tentang dokumen ini.** Isinya disusun dari pembacaan seluruh kode di `lib/`, ditambah uji offline (paket dipasang, di-`import`, socket dibuat, dan handler `hydra` dipanggil tanpa koneksi ke WhatsApp). Contoh yang mengirim pesan ke WhatsApp sungguhan **belum dijalankan**, jadi tampilan akhir di aplikasi WhatsApp bisa berbeda tergantung versi klien penerima. Dokumen ini sudah diperbarui setelah pengecekan ulang terhadap `package.json` dan `lib/` versi terbaru: masalah `chalk`/`axios` hilang dari `dependencies` dan `makeInMemoryStore` gagal di-`import` **sudah diperbaiki** (lihat [2.1](#21--chalk-dan-axios--sudah-diperbaiki) dan [15.2](#152--sudah-diperbaiki--makeinmemorystore-sekarang-berfungsi)). Masalah lain yang masih berlaku ada di [Bagian 15](#15-masalah-yang-diketahui--saran-perbaikan).
 
@@ -106,7 +106,7 @@ const { default: makeWASocket, useMultiFileAuthState } = await import('@kelvdra/
 ```json
 {
   "dependencies": {
-    "@whiskeysockets/baileys": "npm:@kelvdra/baileys@1.0.5-rc.2"
+    "@whiskeysockets/baileys": "npm:@kelvdra/baileys@latest"
   }
 }
 ```
