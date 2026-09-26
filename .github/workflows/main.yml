@@ -3,7 +3,7 @@ name: Publish Package
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 permissions:
   contents: read
@@ -33,16 +33,24 @@ jobs:
       - name: Check package
         run: npm pack --dry-run
 
-      - name: Publish package
+      - name: Detect release type
+        id: release
         run: |
           VERSION=$(node -p "require('./package.json').version")
-
-          echo "Package version: $VERSION"
+          echo "version=$VERSION"
 
           if [[ "$VERSION" == *-* ]]; then
-            echo "Publishing prerelease with tag: rc"
-            npm publish --access public --tag rc
+            echo "tag=rc" >> "$GITHUB_OUTPUT"
+            echo "Prerelease detected: $VERSION"
           else
-            echo "Publishing stable release with tag: latest"
-            npm publish --access public
+            echo "tag=latest" >> "$GITHUB_OUTPUT"
+            echo "Stable release detected: $VERSION"
           fi
+
+      - name: Publish prerelease
+        if: steps.release.outputs.tag == 'rc'
+        run: npm publish --access public --tag rc
+
+      - name: Publish stable
+        if: steps.release.outputs.tag == 'latest'
+        run: npm publish --access public
