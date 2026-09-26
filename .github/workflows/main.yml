@@ -30,17 +30,19 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Check package contents
+      - name: Check package
         run: npm pack --dry-run
 
-      - name: Publish to npm
+      - name: Publish package
         run: |
-    VERSION=$(node -p "require('./package.json').version")
+          VERSION=$(node -p "require('./package.json').version")
 
-    if [[ "$VERSION" == *-* ]]; then
-      echo "Prerelease detected: $VERSION"
-      npm publish --access public --tag rc
-    else
-      echo "Stable release detected: $VERSION"
-      npm publish --access public
-    fi
+          echo "Package version: $VERSION"
+
+          if [[ "$VERSION" == *-* ]]; then
+            echo "Publishing prerelease with tag: rc"
+            npm publish --access public --tag rc
+          else
+            echo "Publishing stable release with tag: latest"
+            npm publish --access public
+          fi
