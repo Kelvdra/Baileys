@@ -34,4 +34,13 @@ jobs:
         run: npm pack --dry-run
 
       - name: Publish to npm
-        run: npm publish --access public
+        run: |
+    VERSION=$(node -p "require('./package.json').version")
+
+    if [[ "$VERSION" == *-* ]]; then
+      echo "Prerelease detected: $VERSION"
+      npm publish --access public --tag rc
+    else
+      echo "Stable release detected: $VERSION"
+      npm publish --access public
+    fi
