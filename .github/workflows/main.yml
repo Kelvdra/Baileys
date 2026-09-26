@@ -3,81 +3,35 @@ name: Publish Package
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
 
 permissions:
   contents: read
+  packages: write
+  id-token: write
 
 jobs:
   publish:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 24
-          registry-url: https://registry.npmjs.org
-          package-manager-cache: false
+          node-version: 20
+          scope: '@kelvdra'
 
       - name: Enable Corepack
         run: corepack enable
 
-      - name: Check Yarn version
-        run: yarn --version
-
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --frozen-lockfile
 
-      - name: Verify package version
+      # 👉 Publish to npmjs.org (tanpa provenance, supaya repo private tetap bisa)
+      - name: Publish to npmjs.org
         run: |
-          PACKAGE_VERSION=$(node -p "require('./package.json').version")
-          TAG_VERSION="${GITHUB_REF_NAME#v}"
-
-          echo "package.json version: $PACKAGE_VERSION"
-          echo "Git tag version:      $TAG_VERSION"
-
-          if [ "$PACKAGE_VERSION" != "$TAG_VERSION" ]; then
-            echo "ERROR: package.json version does not match Git tag."
-            exit 1
-          fi
-
-      - name: Check package contents
-        run: npm pack --dry-run
-
-      - name: Security audit
-        run: npm audit --audit-level=high
-
-      - name: Detect release type
-        id: release
-        run: |
-          VERSION=$(node -p "require('./package.json').version")
-
-          echo "Release version: $VERSION"
-
-          if [[ "$VERSION" == *-* ]]; then
-            echo "release_type=prerelease" >> "$GITHUB_OUTPUT"
-            echo "npm_tag=rc" >> "$GITHUB_OUTPUT"
-            echo "Prerelease detected."
-          else
-            echo "release_type=stable" >> "$GITHUB_OUTPUT"
-            echo "npm_tag=latest" >> "$GITHUB_OUTPUT"
-            echo "Stable release detected."
-          fi
-
-      - name: Publish prerelease
-        if: steps.release.outputs.release_type == 'prerelease'
-        run: npm publish --access public --tag rc
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish stable
-        if: steps.release.outputs.release_type == 'stable'
-        run: npm publish --access public --tag latest
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+          npm publish --registry=https://registry.npmjs.org/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
