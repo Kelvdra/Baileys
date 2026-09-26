@@ -1,6 +1,9 @@
+import type { ILogger } from './logger.js'
+
 export declare function useNekoDBAuth(
     db: any,
-    collectionName?: string
+    collectionName?: string,
+    logger?: ILogger
 ): Promise<{
     state: {
         creds: any

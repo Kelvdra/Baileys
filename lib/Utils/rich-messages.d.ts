@@ -107,6 +107,14 @@ export declare const buildBotForwardedMessage: (
     data: Buffer | Uint8Array;
   } | null,
 ) => any;
+/**
+ * V1 ("classic submessage") rich-table builder. A separate `V2` family
+ * (`generateTableContentV2`, `generateCodeBlockContentV2`, `generateLinkContentV2`)
+ * builds the newer "unified response" GenAI-UX-primitive payload instead -
+ * see the full explanation in the JSDoc comment above `generateTableContent`
+ * in rich-messages.js. In short: try V1 first; if it doesn't render on your
+ * target WhatsApp client, use the V2 equivalent (or vice versa).
+ */
 export declare const generateTableContent: (
   title: string,
   headers: string[],
@@ -126,6 +134,7 @@ export declare const generateListContent: (
   message: any;
   messageId: string;
 };
+/** V1 ("classic submessage") variant - see the note above `generateTableContent`. */
 export declare const generateCodeBlockContent: (
   code: string,
   quoted?: QuotedMessage | null,
@@ -210,6 +219,11 @@ export declare const toTableMetadataV2: (
 export interface TableV2Options extends RichMessageOptions {
   text?: string;
 }
+/**
+ * V2 ("unified response") variant - see the note above `generateTableContent`.
+ * Note the different input shape: takes one `table` array instead of
+ * separate `headers`/`rows`.
+ */
 export declare const generateTableContentV2: (
   table: string[],
   quoted?: QuotedMessage | null,
@@ -218,6 +232,7 @@ export declare const generateTableContentV2: (
   message: any;
   messageId: string;
 };
+/** V2 ("unified response") variant - see the note above `generateTableContent`. */
 export declare const generateCodeBlockContentV2: (
   code: string,
   quoted?: QuotedMessage | null,
@@ -247,6 +262,7 @@ export interface LinkMessageOptions extends RichMessageOptions {
 export interface LinkV2MessageOptions extends RichMessageOptions {
   searchEngine?: string;
 }
+/** V1 ("classic submessage") variant - see the note above `generateTableContent`. */
 export declare const generateLinkContent: (
   text: string,
   links: (string | { url: string; displayName?: string })[],
@@ -256,6 +272,7 @@ export declare const generateLinkContent: (
   message: any;
   messageId: string;
 };
+/** V2 ("unified response") variant - see the note above `generateTableContent`. */
 export declare const generateLinkContentV2: (
   text: string,
   links: (

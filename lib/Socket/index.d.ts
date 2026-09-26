@@ -1,4 +1,6 @@
 import type { UserFacingSocketConfig } from '../Types/index.js';
+import type { HumanizeConfig } from '../Utils/humanizer.js';
+import type { JidResolverMethods } from '../Utils/jid-resolver.js';
 import type { NewsletterStatusFetchOptions, NewsletterStatusList, NewsletterStatusSendOptions, NewsletterStatusSendResult, NewsletterStatusStanzaResult, NewsletterStatusUpdatesFetchOptions } from '../Utils/newsletter-status.js';
 declare const makeWASocket: (config: UserFacingSocketConfig) => {
     communityMetadata: (jid: string) => Promise<import("../index.js").GroupMetadata>;
@@ -305,6 +307,8 @@ declare const makeWASocket: (config: UserFacingSocketConfig) => {
     }[] | undefined>;
     fetchAccountReachoutTimelock: () => Promise<import("../index.js").ReachoutTimelockState>;
     fetchNewChatMessageCap: () => Promise<import("../index.js").NewChatMessageCapInfo>;
-};
+    /** ada bila config.humanize diaktifkan */
+    humanize?: Required<HumanizeConfig>;
+} & JidResolverMethods;
 export default makeWASocket;
 //# sourceMappingURL=index.d.ts.map
