@@ -1,7 +1,7 @@
 {
   "name": "@kelvdra/baileys",
   "type": "module",
-  "version": "1.0.6-rc.2",
+  "version": "1.0.6-rc.3",
   "description": "Baileys fork whiskeysockets modified by kelvdra.",
   "keywords": [
     "baileys",
@@ -20,8 +20,7 @@
     "whatsapp-group",
     "automation",
     "multi-device",
-    "modder",
-    "banner.svg"
+    "modder"
   ],
   "homepage": "https://github.com/WhiskeySockets/Baileys/",
   "repository": {
@@ -36,7 +35,9 @@
     "lib/**/*.d.ts",
     "lib/**/*.json",
     "WAProto/**/*",
-    "engine-requirements.js"
+    "engine-requirements.js",
+    "banner.svg",
+    "test/*"
   ],
   "dependencies": {
     "@cacheable/node-cache": "^1.4.0",
