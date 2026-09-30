@@ -4,7 +4,7 @@
 
 Fork [Baileys (WhiskeySockets)](https://github.com/WhiskeySockets/Baileys) yang dimodifikasi oleh **Kelvdra**: klien WhatsApp Web *multi-device* berbasis WebSocket (tanpa browser/Selenium), dengan tambahan fitur pesan interaktif, builder pesan, VoIP, dan sejumlah utilitas anti-ban / anti-memory-leak.
 
-![version](https://img.shields.io/badge/version-1.0.6-blue)
+![version](https://img.shields.io/badge/version-1.0.6-rc.5-blue)
 ![node](https://img.shields.io/badge/node-%E2%89%A5%2020-green)
 ![module](https://img.shields.io/badge/module-ESM-yellow)
 ![license](https://img.shields.io/badge/license-MIT-lightgrey)
