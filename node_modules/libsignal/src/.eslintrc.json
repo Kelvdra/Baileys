@@ -1,0 +1,24 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 2022
+    },
+    "env": {
+        "es2022": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+        "quotes": ["warn", "single", { "avoidEscape": true }],
+        "semi": ["error", "always"],
+        "no-console": "error",
+        "no-debugger": "error",
+        "no-unused-vars": ["error", { "args": "none" }],
+        "no-constant-condition": ["error", { "checkLoops": false }],
+        "no-trailing-spaces": "warn",
+        "eol-last": ["error", "always"],
+        "no-var": "warn",
+        "prefer-const": "warn",
+        "strict": ["warn", "global"],
+        "no-prototype-builtins": "off"
+    }
+}
