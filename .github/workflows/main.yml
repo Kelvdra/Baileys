@@ -65,7 +65,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Run tests (node:test)
-        run: node --test test/
+        run: node --test test/*.test.js
 
       - name: Check package contents
         run: npm pack --dry-run
