@@ -79,7 +79,6 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    environment: npm-production   # opsional: aktifkan approval manual di Settings > Environments
 
     permissions:
       contents: write   # untuk membuat GitHub Release
@@ -127,10 +126,8 @@ jobs:
 
       - name: Publish to npm
         run: npm publish --access public --provenance --tag ${{ steps.dist.outputs.tag }}
-        # Jika TIDAK memakai Trusted Publishing, hapus komentar 2 baris di bawah
-        # dan simpan token di Settings > Secrets > NPM_TOKEN
-        # env:
-        #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
