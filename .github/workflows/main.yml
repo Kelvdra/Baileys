@@ -117,12 +117,8 @@ jobs:
       - name: Determine npm dist-tag
         id: dist
         run: |
-          # v1.0.7-beta.1 -> "next", selain itu -> "latest"
-          if [[ "$GITHUB_REF_NAME" == *-* ]]; then
-            echo "tag=next" >> "$GITHUB_OUTPUT"
-          else
-            echo "tag=latest" >> "$GITHUB_OUTPUT"
-          fi
+          # Semua versi (termasuk rc/beta) dipublish dengan dist-tag "latest"
+          echo "tag=latest" >> "$GITHUB_OUTPUT"
 
       - name: Publish to npm
         run: npm publish --access public --provenance --tag ${{ steps.dist.outputs.tag }}
