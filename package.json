@@ -36,7 +36,8 @@
     "lib/**/*.d.ts",
     "lib/**/*.json",
     "WAProto/**/*",
-    "engine-requirements.js"
+    "engine-requirements.js",
+    "docs/*"
   ],
   "dependencies": {
     "@cacheable/node-cache": "^1.4.0",
