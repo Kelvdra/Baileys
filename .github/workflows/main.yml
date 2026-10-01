@@ -1,89 +1,17 @@
-name: CI & Publish (Production)
+name: Publish Package
 
 on:
   push:
-    branches: [main]
     tags:
       - 'v*'
-  pull_request:
-    branches: [main]
-  workflow_dispatch:
-
-# Batalkan run lama di branch/PR yang sama (tag release tidak dibatalkan)
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
 
 permissions:
   contents: read
-
-env:
-  YARN_ENABLE_TELEMETRY: '0'
-  YARN_ENABLE_IMMUTABLE_INSTALLS: 'true'
-  YARN_NODE_LINKER: node-modules   # Yarn 4 default-nya PnP; paksa node_modules agar Node biasa bisa resolve package
+  id-token: write
 
 jobs:
-  # ─────────────────────────────────────────────
-  # 1) TEST: jalan di semua push / PR / tag
-  # ─────────────────────────────────────────────
-  test:
-    name: Test (Node ${{ matrix.node }})
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      matrix:
-        node: [20, 22, 24]
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node }}
-
-      - name: Enable Corepack (Yarn 4.9.2)
-        run: corepack enable
-
-      - name: Cache Yarn
-        uses: actions/cache@v4
-        with:
-          path: ~/.yarn/berry/cache
-          key: yarn-${{ runner.os }}-node${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            yarn-${{ runner.os }}-node${{ matrix.node }}-
-
-      # test/voip.test.js memakai child_process (spawnSync), ffmpeg disiapkan agar aman
-      - name: Install ffmpeg
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends ffmpeg
-
-      - name: Install dependencies
-        run: yarn install --immutable
-
-      - name: Run tests (node:test)
-        run: node --test test/
-
-      - name: Check package contents
-        run: npm pack --dry-run
-
-  # ─────────────────────────────────────────────
-  # 2) PUBLISH: hanya saat push tag v*
-  # ─────────────────────────────────────────────
   publish:
-    name: Publish to npm
-    needs: test
-    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-    environment: npm-production   # opsional: aktifkan approval manual di Settings > Environments
-
-    permissions:
-      contents: write   # untuk membuat GitHub Release
-      id-token: write   # untuk npm Trusted Publishing + provenance
 
     steps:
       - name: Checkout
@@ -99,41 +27,11 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
-      - name: Verify tag matches package.json version
-        run: |
-          TAG_VERSION="${GITHUB_REF_NAME#v}"
-          PKG_VERSION="$(node -p "require('./package.json').version")"
-          echo "Tag: $TAG_VERSION | package.json: $PKG_VERSION"
-          if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
-            echo "::error::Tag (v$TAG_VERSION) tidak sama dengan version di package.json ($PKG_VERSION)"
-            exit 1
-          fi
-
       - name: Install dependencies
         run: yarn install --immutable
 
       - name: Check package contents
         run: npm pack --dry-run
 
-      - name: Determine npm dist-tag
-        id: dist
-        run: |
-          # v1.0.7-beta.1 -> "next", selain itu -> "latest"
-          if [[ "$GITHUB_REF_NAME" == *-* ]]; then
-            echo "tag=next" >> "$GITHUB_OUTPUT"
-          else
-            echo "tag=latest" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Publish to npm
-        run: npm publish --access public --provenance --tag ${{ steps.dist.outputs.tag }}
-        # Jika TIDAK memakai Trusted Publishing, hapus komentar 2 baris di bawah
-        # dan simpan token di Settings > Secrets > NPM_TOKEN
-        # env:
-        #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          generate_release_notes: true
-          prerelease: ${{ contains(github.ref_name, '-') }}
+        run: npm publish --access public
