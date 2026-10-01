@@ -1,7 +1,7 @@
 {
   "name": "@kelvdra/baileys",
   "type": "module",
-  "version": "1.0.6-rc.4",
+  "version": "1.0.6-rc.5",
   "description": "Baileys fork whiskeysockets modified by kelvdra.",
   "keywords": [
     "baileys",
@@ -23,9 +23,9 @@
     "modder",
     "banner.svg"
   ],
-  "homepage": "https://github.com/WhiskeySockets/Baileys/",
+  "homepage": "https://github.com/Kelvdra/Baileys/",
   "repository": {
-    "url": "git@github.com:WhiskeySockets/Baileys.git"
+    "url": "git@github.com:Kelvdra/Baileys.git"
   },
   "license": "MIT",
   "author": "Kelvdra",
