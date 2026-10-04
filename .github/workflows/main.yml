@@ -1,0 +1,116 @@
+name: Publish to npm
+
+# Simpan file ini di: .github/workflows/publish.yml
+#
+# Cara rilis:
+#   1. Ubah "version" di package.json, misalnya 1.0.6-rc.7
+#   2. git commit -am "release: 1.0.6-rc.7"
+#   3. git tag v1.0.6-rc.7
+#   4. git push origin main --tags
+#
+# Prasyarat: secret repo NPM_TOKEN (npm automation / granular token dengan hak publish).
+
+on:
+  push:
+    tags:
+      - "v*"
+
+# Tag yang sama tidak boleh dipublish dua kali secara paralel
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write # untuk membuat GitHub Release
+
+jobs:
+  publish:
+    name: Publish @kelvdra/baileys
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+
+      - name: Validasi format tag dan cocokkan dengan package.json
+        id: meta
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+
+          # Format yang diterima: v1.0.6, v1.0.6-rc.6, v1.0.6-beta.1, dst.
+          if ! [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+            echo "::error::Tag '$TAG' tidak valid. Gunakan format v<semver>, contoh v1.0.6-rc.6"
+            exit 1
+          fi
+
+          TAG_VERSION="${TAG#v}"
+          PKG_VERSION="$(node -p "require('./package.json').version")"
+          PKG_NAME="$(node -p "require('./package.json').name")"
+
+          if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
+            echo "::error::Tag ($TAG_VERSION) tidak sama dengan version di package.json ($PKG_VERSION)"
+            exit 1
+          fi
+
+          if [[ "$TAG_VERSION" == *-* ]]; then
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          echo "version=$PKG_VERSION" >> "$GITHUB_OUTPUT"
+          echo "name=$PKG_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Cek file hasil build (lib) ada
+        run: |
+          test -f lib/index.js || { echo "::error::lib/index.js tidak ada, pastikan folder lib ikut ter-commit"; exit 1; }
+          test -f WAProto/index.js || { echo "::error::WAProto/index.js tidak ada"; exit 1; }
+
+      - name: Dry run (lihat isi paket)
+        run: npm pack --dry-run
+
+      - name: Lewati jika versi sudah ada di npm
+        id: exists
+        run: |
+          if npm view "${{ steps.meta.outputs.name }}@${{ steps.meta.outputs.version }}" version >/dev/null 2>&1; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "::warning::Versi ${{ steps.meta.outputs.version }} sudah ada di npm, publish dilewati"
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish ke npm (dist-tag latest)
+        if: steps.exists.outputs.published == 'false'
+        # --tag latest dipaksa agar versi rc tidak masuk ke tag "next"
+        run: npm publish --tag latest --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Pastikan dist-tag latest menunjuk ke versi ini
+        if: steps.exists.outputs.published == 'false'
+        run: |
+          sleep 10
+          npm dist-tag ls "${{ steps.meta.outputs.name }}"
+          LATEST="$(npm view "${{ steps.meta.outputs.name }}" dist-tags.latest)"
+          if [ "$LATEST" != "${{ steps.meta.outputs.version }}" ]; then
+            echo "::warning::latest masih $LATEST, mencoba set ulang ke ${{ steps.meta.outputs.version }}"
+            npm dist-tag add "${{ steps.meta.outputs.name }}@${{ steps.meta.outputs.version }}" latest
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Buat GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ github.ref_name }}
+          generate_release_notes: true
+          prerelease: ${{ steps.meta.outputs.prerelease == 'true' }}
