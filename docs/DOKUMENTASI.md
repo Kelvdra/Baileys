@@ -1,4 +1,4 @@
-![@kelvdra/baileys](./banner.svg)
+![@kelvdra/baileys](../banner.svg)
 
 # 📘 Dokumentasi `@kelvdra/baileys`
 
