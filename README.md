@@ -20,6 +20,7 @@ Fork [Baileys (WhiskeySockets)](https://github.com/WhiskeySockets/Baileys) yang 
 - [Pengembangan & Testing](#pengembangan--testing)
 - [Rilis](#rilis)
 - [Dokumentasi Lengkap](#dokumentasi-lengkap)
+- [Dukung Proyek Ini](#dukung-proyek-ini)
 - [Penafian](#penafian)
 - [Lisensi & Kredit](#lisensi--kredit)
 
@@ -289,6 +290,17 @@ git push origin v1.0.6
 | [docs/DOKUMENTASI.md](./docs/DOKUMENTASI.md) | Referensi lengkap: konfigurasi, event, semua tipe pesan, API grup/komunitas/newsletter, store, dan masalah yang diketahui |
 | [docs/README_nativeflow_a2ui.md](./docs/README_nativeflow_a2ui.md) | Tombol Native Flow dan kartu A2UI |
 | [docs/README_fitur_tambahan.md](./docs/README_fitur_tambahan.md) | Custom Presence, MMG High-Res, Anti-Delay Upload |
+
+## Dukung Proyek Ini
+
+Kalau library ini berguna, kamu bisa mendukung pengembangannya lewat salah satu link di bawah. Donasi bersifat sukarela dan tidak mengaktifkan fitur apa pun di dalam kode.
+
+<!-- Ganti USERNAME_KAMU dengan username Saweria / Trakteer yang sebenarnya -->
+
+| Platform | Link |
+| --- | --- |
+| Saweria | [saweria.co/USERNAME_KAMU](https://saweria.co/USERNAME_KAMU) |
+| Trakteer | [trakteer.id/USERNAME_KAMU](https://trakteer.id/USERNAME_KAMU) |
 
 ## Penafian
 

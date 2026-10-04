@@ -1786,7 +1786,7 @@ Beberapa handler menempelkan nilai tetap yang akan terlihat oleh penerima atau i
 | Handler | Nilai tetap |
 |---|---|
 | `handleAlbum` | `forwardingScore: 99999`, `isForwarded: true`, `starred`, `labels`, `disappearingMode` dengan semua flag `initiatedBy…: true`, info newsletter `newsletterName: "WhatsApp"`, `senderName: "7-Yuukey"`, `mentionedJid: [jid]` |
-| `handleEvent` | Info newsletter `"D \| 7eppeli-Exloration"` dengan JID `120363421563597486@newsletter`, `mentionedJid: [jid]`, `supportPayload` (`is_ai_message: true`) |
+| `handleEvent` | Info newsletter hanya disertakan jika `eventData.newsletter` diisi (`newsletterName`, `newsletterJid`), `mentionedJid: [jid]`, `supportPayload` (`is_ai_message: true`) |
 | `handleOrderMessage` | `orderId: "7EPPELI25022008"`, `token: "7EPPELI_EXAMPLE_TOKEN"`, `sellerJid: "0@whatsapp.net"`, `status: "ACCEPTED"` |
 | `handleProduct` / `handleCarousel` | `businessOwnerJid: "0@s.whatsapp.net"`, beberapa default seperti `productId: "123456"`, `retailerId: "Retailer"` |
 
