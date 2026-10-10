@@ -82,6 +82,8 @@ export interface WAUrlInfo {
 type Mentionable = {
     /** list of jids that are mentioned in the accompanying text */
     mentions?: string[];
+    /** mention all */
+    mentionAll?: boolean;
 };
 type Contextable = {
     /** add contextInfo to the message */
@@ -234,6 +236,10 @@ type Cardsable = {
 type Editable = {
     edit?: WAMessageKey;
 };
+type AlbumAssociable = {
+    /** key of the parent albumMessage to associate this media with */
+    albumParentKey?: WAMessageKey;
+};
 type WithDimensions = {
     width?: number;
     height?: number;
@@ -268,12 +274,12 @@ export type AnyMediaMessageContent = (({
     image: WAMediaUpload
     caption?: string
     jpegThumbnail?: string
-} & Mentionable & Contextable & Buttonable & Templatable & Interactiveable & WithDimensions) | ({
+} & Mentionable & Contextable & Buttonable & Templatable & Interactiveable & WithDimensions & AlbumAssociable) | ({
     video: WAMediaUpload
     caption?: string
     gifPlayback?: boolean
     jpegThumbnail?: string
-} & Mentionable & Contextable & Buttonable & Templatable & Interactiveable & WithDimensions) | {
+} & Mentionable & Contextable & Buttonable & Templatable & Interactiveable & WithDimensions & AlbumAssociable) | {
     audio: WAMediaUpload
     /** if set to true, will send as a `voice note` */
     ptt?: boolean
