@@ -8,6 +8,7 @@
 
 - [Persiapan](#persiapan)
 - [Tiga cara mengirim](#tiga-cara-mengirim)
+- [Versi lengkap pengiriman](#versi-lengkap-pengiriman)
 - [Referensi method](#referensi-method)
 - [Format teks: link, sitasi, LaTeX](#format-teks-link-sitasi-latex)
 - [Media: URL, Buffer, dan path file](#media-url-buffer-dan-path-file)
@@ -133,6 +134,205 @@ console.log(msg.key.id)
 ```
 
 Semua method `add*` mengembalikan `this`, jadi bisa dirantai. `send()` mengembalikan pesan yang dikirim (ada `msg.key`).
+
+---
+
+## Versi lengkap pengiriman
+
+Bagian ini berisi contoh siap pakai untuk tiap cara kirim, dengan semua key dan opsi yang didukung.
+
+### A) `sendMessage` shorthand: semua key sekaligus
+
+Isi konten pesan **hanya** dengan key `aiRich` supaya tidak bentrok dengan jenis pesan lain.
+
+```js
+import { readFile } from 'node:fs/promises'
+
+const hasil = await sock.sendMessage(jid, {
+  aiRich: {
+    // ===== Konten (urutan tampil mengikuti tabel shorthand, bukan urutan tulis) =====
+    text: '## Judul\nTeks dengan **tebal**, [link](https://example.com), dan sitasi[](https://example.com/ref).',
+
+    code: [
+      { language: 'javascript', content: 'console.log("halo")' },
+      { language: 'python', code: 'print("halo")' }          // `code` juga diterima sebagai ganti `content`
+    ],
+
+    table: [
+      ['Nama', 'Nilai'],
+      ['A', '10'],
+      ['B', '20']
+    ],
+
+    image: await readFile('./foto.jpg'),                       // string URL, Buffer, atau array
+    // images: ['https://example.com/1.png', 'https://example.com/2.png'],
+
+    video: { url: 'https://example.com/klip.mp4', autoFill: true },
+    // video: 'https://example.com/klip.mp4'
+    // video: ['https://example.com/klip.mp4', { autoFill: false, duration: 10 }]   // tuple [url, opsi]
+
+    map: [
+      { latitude: -6.5944, longitude: 106.7892, title: 'Bogor', body: 'Kota Hujan' }
+    ],
+
+    source: [
+      ['https://example.com/fav.png', 'https://example.com', 'Example', 'example.com']
+    ],
+
+    product: {
+      title: 'Kopi Arabika 250g', brand: 'Kebun Kita',
+      price: 'Rp95.000', sale_price: 'Rp79.000',
+      url: 'https://example.com/produk/kopi',
+      image: 'https://example.com/kopi.jpg'
+    },
+
+    post: {
+      username: 'kelvdra', title: 'Judul post', caption: 'Caption',
+      thumbnail: 'https://example.com/thumb.jpg', url: 'https://instagram.com/p/xxxx',
+      like: 1200, comment: 30, share: 5, verified: true
+    },
+
+    reels: [{
+      username: 'kelvdra', title: 'Judul reels',
+      videoUrl: 'https://instagram.com/reel/xxxx',
+      thumbnail: 'https://example.com/thumb.jpg',
+      like: 1000, share: 20, view: 50000
+    }],
+
+    metadata: 'Teks kecil/redup',
+    tip: 'Tips singkat',
+    widget: { title: 'Jadwal', sections: [], actions: [] },
+    footerAction: { text: 'Buka detail', url: 'https://example.com' },
+    suggest: ['Lagi dong', 'Selesai'],
+
+    // ===== Opsi kirim (key lain di dalam aiRich diteruskan ke send) =====
+    notification: false,
+    disclaimerText: '',
+    forwarded: true,
+    forwardWrapper: true,
+    bypassDownload: true,
+    verification: 'auto'
+  }
+}, { quoted: m })          // argumen ke-3: membalas pesan
+
+console.log('Terkirim, id:', hasil.key.id)
+```
+
+Catatan shorthand:
+- `quoted` diambil dari argumen ke-3 `sendMessage`.
+- Shorthand tidak punya `setTitle`, `setFooter`, `setContextInfo`, `id`, `replace`, atau `insertAt`. Untuk itu pakai builder.
+- Jika `aiRich` berisi instance `AIRich`, opsi kirim diambil dari `options` di sebelahnya:
+
+```js
+await sock.sendMessage(jid, { aiRich: ai, options: { notification: true } }, { quoted: m })
+```
+
+### B) `sendAIRich`: semua bentuk argumen
+
+```js
+// 1. Callback (boleh async), builder dibuat otomatis
+const pengirim = m.key.participant || m.key.remoteJid
+await sock.sendAIRich(jid, async (ai) => {
+  ai.setTitle('Judul')
+    .setFooter('Footer')
+    .setContextInfo({ mentionedJid: [pengirim] })     // pengirim = m.key.participant || m.key.remoteJid
+    .addText(`Halo @${pengirim.split('@')[0]}`, { id: 'sapa' })
+    .addImage(await readFile('./foto.jpg'))
+    .addSuggest(['Oke', 'Batal'])
+}, {
+  quoted: m,
+  notification: true,
+  disclaimerText: 'Dibuat otomatis'
+})
+
+// 2. Instance yang sudah disiapkan (bisa dipakai ulang, diedit, dan dikirim lagi)
+const ai = new AIRich(sock)
+ai.addText('Halo')
+const sent = await sock.sendAIRich(jid, ai, { quoted: m })
+
+// 3. Objek pesan yang sudah ada (diteruskan lewat loadFrom)
+await sock.sendAIRich(jid, pesanRichResponseYangAda)
+```
+
+`sendAIRich` mengembalikan pesan yang dikirim (ada `key`), sama seperti `ai.send()`.
+
+### C) Builder manual: kirim ke semua jenis chat
+
+```js
+import { AIRich } from '@kelvdra/baileys'
+
+const ai = new AIRich(sock, {
+  dynamic: true,               // response id baru tiap build
+  unsupportedTypeAlert: true   // teks cadangan untuk klien yang tak bisa render
+})
+
+ai.setTitle('Laporan')
+  .setFooter('Sumber: sistem internal')
+  .setContextInfo({ mentionedJid: ['6281234567890@s.whatsapp.net'] })
+  .addText('Halo @6281234567890', { id: 'sapa' })
+  .addTable([['A', 'B'], ['1', '2']], { id: 'tabel' })
+  .addSuggest(['Lanjut', 'Stop'])
+
+const opsi = {
+  quoted: m,                     // balas pesan
+  notification: true,
+  disclaimerText: 'Dibuat otomatis',
+  forwarded: true,
+  forwardWrapper: true,
+  bypassDownload: true,
+  verification: 'auto',
+  messageId: undefined,          // isi jika mau ID sendiri
+  additionalNodes: []
+}
+
+// Chat pribadi
+await ai.send('6281234567890@s.whatsapp.net', opsi)
+
+// Grup
+await ai.send('1203630xxxxxxxx@g.us', opsi)
+
+// Balas di chat tempat pesan masuk
+await ai.send(m.key.remoteJid, opsi)
+```
+
+Catatan: `setContextInfo` hanya mengisi `contextInfo` pesan. Apakah mention tampil sebagai tag di klien belum saya uji, jadi coba dulu di chat tes.
+
+Gunakan `build()` bila kamu hanya ingin objek pesannya tanpa mengirim:
+
+```js
+const built = await ai.build(jid, { quoted: m })
+// built.key.id, built.message, built.aiVerification ('omitted' | 'placeholder' | 'preserved')
+await sock.relayMessage(built.key.remoteJid, built.message, { messageId: built.key.id })
+```
+
+Dengan `build()` + `relayMessage` manual, edit lanjutan otomatis (`bypassDownload`) **tidak** ikut berjalan karena itu bagian dari `send()`.
+
+### D) Helper siap pakai dengan error handling
+
+```js
+import { AIRich, AIRichError } from '@kelvdra/baileys'
+
+export async function kirimRich(sock, jid, isi, m) {
+  try {
+    const ai = new AIRich(sock)
+    await isi(ai)                       // isi dengan ai.addX(...)
+    return await ai.send(jid, { quoted: m })
+  } catch (e) {
+    if (e instanceof AIRichError) {
+      console.error('AIRich error:', e.code, e.message)
+    } else {
+      console.error('Gagal kirim:', e)
+    }
+    // kirim cadangan teks biasa agar user tetap dapat balasan
+    return sock.sendMessage(jid, { text: 'Maaf, gagal menampilkan pesan.' }, { quoted: m })
+  }
+}
+
+// pemakaian
+await kirimRich(sock, m.key.remoteJid, (ai) => {
+  ai.addText('Halo!').addSuggest(['Oke'])
+}, m)
+```
 
 ---
 
