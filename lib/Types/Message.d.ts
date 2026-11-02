@@ -374,7 +374,111 @@ export type AnyRegularMessageContent = (({
 } | {
     stickerPack: StickerPack
 } | SharePhoneNumber | RequestPhoneNumber) & ViewOnce & ViewOnceExt & Musicable & SecureMetaServiceLabelable
-export type AnyMessageContent = AnyRegularMessageContent | {
+/**
+ * Tipe-tipe di bawah dirujuk oleh AnyRegularMessageContent tetapi sebelumnya tidak pernah didefinisikan
+ * (di consumer dengan skipLibCheck jatuh diam-diam menjadi `any`). Bentuk diturunkan dari generateWAMessageContent;
+ * yang tidak punya cabang runtime di sana dibiarkan longgar.
+ */
+/** `pin` = key pesan yang disematkan; field `type` (PinInChat.Type) dan `time` (detik) ada di level konten. */
+export type PinInfo = WAMessageKey;
+export type KeepInfo = WAMessageKey;
+export type CallCreationInfo = Record<string, any>;
+export type WAEventMessage = {
+    name: string;
+    description?: string;
+    startDate: Date;
+    endDate?: Date;
+    location?: proto.Message.ILocationMessage;
+    /** menambahkan joinLink panggilan (butuh getCallLink pada options) */
+    call?: 'audio' | 'video';
+    isCancelled?: boolean;
+    isScheduleCall?: boolean;
+    extraGuestsAllowed?: boolean;
+    messageSecret?: Uint8Array;
+};
+export type AdminInviteInfo = Record<string, any>;
+export type PaymentInfo = {
+    /** default 'IDR' */
+    currency?: string;
+    offset?: number;
+    amount?: number;
+    expiry?: number;
+    /** default '0@s.whatsapp.net' */
+    from?: string;
+    note?: string;
+    image?: {
+        placeholderArgb?: number;
+        textArgb?: number;
+        subtextArgb?: number;
+    };
+};
+export type PollResultOptions = Record<string, any>;
+export type WAOrderMessage = Record<string, any>;
+export type StickerPack = {
+    /** 1..120 sticker; butuh `sharp` atau `jimp` terpasang */
+    stickers: any[];
+    cover?: any;
+    name: string;
+    publisher?: string;
+    packId?: string;
+    description?: string;
+};
+/** Added from @kelvdra/baileys: jenis konten yang di-route ke `hydra` oleh `sendMessage`. */
+export type KelvdraMessageContent = {
+    /** Order dari katalog (dikirim langsung oleh handleOrderMessage). */
+    orderMessage: {
+        /** URL (diunduh) atau Buffer */
+        thumbnail?: string | Buffer;
+        itemCount?: number;
+        message?: string;
+        orderTitle?: string;
+        totalAmount1000?: number;
+        totalCurrencyCode?: string;
+        [key: string]: any;
+    };
+} | {
+    /** Status grup (groupStatusMessageV2). Hanya untuk jid grup. Audio otomatis ptt kecuali `ptt: false`. */
+    groupStatus: {
+        image?: WAMediaUpload;
+        video?: WAMediaUpload;
+        audio?: WAMediaUpload;
+        text?: string;
+        caption?: string;
+        ptt?: boolean;
+        [key: string]: any;
+    };
+} | {
+    requestPaymentMessage: Record<string, any>;
+} | {
+    productMessage: Record<string, any>;
+} | {
+    interactiveButtons: Record<string, any> | any[];
+} | {
+    interactiveMessage: Record<string, any>;
+} | {
+    albumMessage: Record<string, any>;
+} | {
+    eventMessage: Record<string, any>;
+} | {
+    pollResultMessage: Record<string, any>;
+} | {
+    carouselMessage: Record<string, any>;
+} | {
+    carousel: Record<string, any>;
+} | {
+    /** Status mention (versi hydra; belum di-route dari sendMessage, pakai sendStatusMentions). */
+    statusMentionMessage: {
+        image?: WAMediaUpload;
+        video?: WAMediaUpload;
+        caption?: string;
+        mentions?: string | string[];
+    };
+} | {
+    aiRich: Record<string, any>;
+} | {
+    AIRich: Record<string, any>;
+};
+export type AnyMessageContent = AnyRegularMessageContent | KelvdraMessageContent | {
     forward: WAMessage;
     force?: boolean;
 } | {

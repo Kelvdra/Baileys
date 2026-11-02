@@ -1,7 +1,7 @@
 {
   "name": "@kelvdra/baileys",
   "type": "module",
-  "version": "1.0.7",
+  "version": "1.0.7-rc.1",
   "description": "Baileys fork whiskeysockets modified by kelvdra.",
   "keywords": [
     "baileys",
@@ -45,7 +45,7 @@
     "cache-manager": "^5.7.6",
     "chalk": "^5.3.0",
     "fflate": "^0.8.2",
-    "libsignal": "npm:@kelvdra/libsignal",
+    "libsignal": "npm:@kelvdra/libsignal@latest",
     "lru-cache": "^11.1.0",
     "music-metadata": "^11.7.0",
     "p-queue": "^9.0.0",

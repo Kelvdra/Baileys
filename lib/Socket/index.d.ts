@@ -324,6 +324,44 @@ declare const makeWASocket: (config: UserFacingSocketConfig) => {
     }[] | undefined>;
     fetchAccountReachoutTimelock: () => Promise<import("../index.js").ReachoutTimelockState>;
     fetchNewChatMessageCap: () => Promise<import("../index.js").NewChatMessageCapInfo>;
+    /** Added from @kelvdra/baileys: akses langsung ke semua handler hydra (carousel, order, groupStatus, dst). */
+    kelvdra: import('./hydra.js').default;
+    /** Added from @kelvdra/baileys: kirim HTML sebagai pesan (tampil langsung atau lewat layar "klik"). */
+    sendHTML: (jid: string, html: string | Buffer, options?: {
+        /** Teks fallback gelembung chat (default: title) */
+        text?: string;
+        /** Judul (mode screen: judul gelembung + layar). Default 'HTML' */
+        title?: string;
+        /** true = gelembung "klik" yang membuka layar HTML. Default false (tampil langsung) */
+        screen?: boolean;
+        /** Nama tab pada mode screen. Default 'HTML' */
+        tabHeader?: string;
+        trustedSources?: string[];
+        url?: string;
+        /** Default true */
+        notification?: boolean;
+        quoted?: import("../index.js").WAMessage;
+        messageId?: string;
+        [key: string]: any;
+    }) => Promise<any>;
+    /**
+     * Added from @kelvdra/baileys: posting status (teks/gambar/video/audio) dan memberi notifikasi mention
+     * ke `jids` (user atau grup). Mengembalikan pesan status yang dibuat.
+     */
+    sendStatusMentions: (content: import("../index.js").AnyMessageContent, jids?: string[]) => Promise<import("../index.js").WAMessage>;
+    /** Added from @kelvdra/baileys: kirim album (minimal 2 media berisi `image` atau `video`). `options.delay` = jeda antar media (ms, default 500). */
+    sendAlbumMessage: (jid: string, medias: Array<{
+        image?: any;
+        video?: any;
+        caption?: string;
+        [key: string]: any;
+    }>, options?: {
+        delay?: number;
+        quoted?: import("../index.js").WAMessage;
+        [key: string]: any;
+    }) => Promise<import("../index.js").WAMessage>;
+    /** Added from @kelvdra/baileys: kirim AIRich. `content` boleh instance AIRich, fungsi builder `(ai) => void`, atau objek shorthand. */
+    sendAIRich: (jid: string, content: any, options?: Record<string, any>) => Promise<any>;
     /** ada bila config.humanize diaktifkan */
     humanize?: Required<HumanizeConfig>;
     /** sendPresenceUpdate dengan argumen ketiga opsional (durasi, steps, repeat, dst) */

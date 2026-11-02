@@ -406,7 +406,8 @@ Sebelum masuk ke jalur standar Baileys, `sendMessage` memanggil `sock.kelvdra.de
 | `eventMessage` | `EVENT` | `handleEvent` | `WAMessage` |
 | `pollResultMessage` | `POLL_RESULT` | `handlePollResult` | `WAMessage` |
 | `carouselMessage` atau `carousel` | `CAROUSEL` | `handleCarousel` | `WAMessage` |
-| `statusMentionMessage`, `orderMessage`, `groupStatus`, `stickerPack` | terdeteksi, **tidak ada `case`** | — | jatuh ke jalur standar (lihat [15.3](#153-handler-yang-tidak-ter-route)) |
+| `orderMessage`, `groupStatus` | ✅ ter-route (`ORDER`, `GROUP_STATUS`) | langsung | `groupStatus` hanya untuk jid grup (`@g.us`), selain itu `TypeError` |
+| `statusMentionMessage`, `stickerPack` | terdeteksi, **tidak ada `case`** | — | jatuh ke jalur standar (lihat [15.3](#153-handler-yang-tidak-ter-route)) |
 | lainnya | `null` | — | jalur standar Baileys → `WAMessage` |
 
 Hal yang perlu diingat:
@@ -953,7 +954,7 @@ Perilaku dari kode:
 
 ### 11.12 Handler yang hanya bisa dipanggil langsung
 
-`sock.kelvdra` mengekspos seluruh method hydra. Dua handler berikut **tidak** ter-route dari `sendMessage`, tetapi dapat dipanggil manual (belum diuji ke WhatsApp):
+`sock.kelvdra` mengekspos seluruh method hydra. `orderMessage` dan `groupStatus` kini **ter-route** dari `sendMessage` (`sock.sendMessage(jid, { orderMessage: {…} })` / `{ groupStatus: {…} }` — `groupStatus` hanya ke grup; belum diuji ke WhatsApp). Pemanggilan manual tetap bisa:
 
 ```js
 // Order message (dibuat dari katalog)
@@ -987,8 +988,8 @@ Ringkasan seluruh method `sock.kelvdra`:
 | `handleEvent` | Event | ✅ `eventMessage` |
 | `handlePollResult` | Snapshot hasil poll | ✅ `pollResultMessage` |
 | `handleCarousel` | Carousel | ✅ `carouselMessage` / `carousel` |
-| `handleOrderMessage` | Order | ❌ panggil manual |
-| `handleGroupStory` | Status grup | ❌ panggil manual |
+| `handleOrderMessage` | Order | ✅ `orderMessage` |
+| `handleGroupStory` | Status grup | ✅ `groupStatus` (grup saja) |
 | `handleStMention` | Status mention (versi lama) | ❌ **rusak**, pakai `sendStatusMentions` |
 | `handleStickerPack` | Sticker pack | ❌ **rusak**, pakai `stickerPack` |
 
@@ -1533,7 +1534,7 @@ await sock.chatModify({ clear: true }, jid)
 await sock.chatModify({ delete: true, lastMessages: lastMsg }, jid)
 await sock.chatModify({ star: { messages: [{ id: m.key.id, fromMe: m.key.fromMe }], star: true } }, jid)
 
-await sock.addChatLabel(jid, labelId)       // removeChatLabel
+await sock.addChatLabel(jid, labelId)       // removeChatLabel (detail: 12.5.1)
 await sock.addMessageLabel(jid, m.key.id, labelId)
 await sock.addOrEditContact(jid, { fullName: 'Nama Kontak' })
 await sock.removeContact(jid)
@@ -1541,6 +1542,88 @@ await sock.star(jid, [{ id: m.key.id, fromMe: false }], true)
 ```
 
 Fitur bisnis: `getCatalog`, `getCollections`, `productCreate`, `productUpdate`, `productDelete`, `getOrderDetails`, `updateBussinesProfile`, `updateCoverPhoto`, `removeCoverPhoto`, `addOrEditQuickReply`, `removeQuickReply`.
+
+#### 12.5.1 Label WhatsApp Business
+
+Label adalah fitur **WhatsApp Business** dan berjalan lewat *app state sync* (`chatModify`). Tidak perlu konfigurasi tambahan.
+
+**Buat, ubah, hapus label** (`id` string unik buatan Anda, `color` 0–19):
+
+```js
+await sock.addLabel(jid, { id: '1', name: 'Pelanggan Baru', color: 3 })   // buat
+await sock.addLabel(jid, { id: '1', name: 'Pelanggan VIP',  color: 5 })   // ubah (id sama)
+await sock.addLabel(jid, { id: '1', deleted: true })                      // hapus
+```
+
+`jid` pada `addLabel` hanya argumen `chatModify`; label itu sendiri milik akun, bukan milik chat.
+
+**Pasang / lepas label di chat:**
+
+```js
+await sock.addChatLabel(jid, '1')
+await sock.removeChatLabel(jid, '1')
+```
+
+**Pasang / lepas label di pesan:**
+
+```js
+// m = pesan dari messages.upsert
+await sock.addMessageLabel(m.key.remoteJid, m.key.id, '1')
+await sock.removeMessageLabel(m.key.remoteJid, m.key.id, '1')
+```
+
+**Membaca label.** Tidak ada fungsi "ambil semua label"; datanya datang lewat event saat sinkronisasi, dan perubahan berikutnya lewat event yang sama. Build ini tidak punya store bawaan, jadi simpan sendiri. Pasang listener **sebelum** koneksi terbuka agar sinkronisasi awal tidak terlewat:
+
+```js
+const labels = new Map()   // labelId -> { id, name, color, deleted, predefinedId }
+const chatLabels = new Map() // chatId -> Set<labelId>
+
+sock.ev.on('labels.edit', (label) => {
+  if (label.deleted) labels.delete(label.id)
+  else labels.set(label.id, label)
+})
+
+sock.ev.on('labels.association', ({ type, association }) => {
+  // type: 'add' | 'remove'
+  // association.type === 'label_jid'     -> { chatId, labelId }
+  // association.type === 'label_message' -> { chatId, messageId, labelId }
+  if (association.type !== 'label_jid') return
+  const set = chatLabels.get(association.chatId) ?? new Set()
+  type === 'add' ? set.add(association.labelId) : set.delete(association.labelId)
+  chatLabels.set(association.chatId, set)
+})
+```
+
+Simpan `labels` / `chatLabels` ke file atau database bila perlu bertahan setelah restart.
+
+**Catatan:**
+- Hanya untuk akun WhatsApp Business. Perilaku di akun biasa belum diuji.
+- Warna hanya 0–19 (20 warna bawaan WhatsApp).
+- Beda dengan `sock.updateMemberLabel(groupJid, text)`, yang mengatur label anggota di dalam grup, bukan label Business.
+- Event `labels.edit` / `labels.association` untuk perubahan Anda sendiri berasal dari decode patch lokal (`emitOwnEvents: true`), jadi **bukan bukti server menerima**. Buktinya: `addChatLabel` tidak melempar error **dan** label tampak di aplikasi Business di HP.
+
+**Jika label terbuat tetapi tidak menempel ke chat** (belum ada bug di library yang ditemukan; jalurnya identik dengan upstream), periksa:
+1. Chat dengan nomor itu **sudah ada** di aplikasi Business (punya riwayat chat / tersimpan). Asosiasi ke chat yang tidak ada bisa diterima server tetapi tidak tampak.
+2. `jid` berupa JID penuh (`628xxx@s.whatsapp.net`): bukan nomor mentah, bukan `@c.us`, tanpa `:device`. Bila chat tersimpan sebagai LID, coba JID `@lid`-nya.
+3. `labelId` adalah **string** dan identik dengan id saat label dibuat (`'1'`, bukan `1`).
+
+Skrip diagnostik (nyalakan juga `logger` level `debug`; baris `applying app patch` menunjukkan patch yang dikirim):
+
+```js
+const LABEL = '1'
+const jid = '628xxxxxxxxxx@s.whatsapp.net'   // chat yang SUDAH ada di app Business
+
+sock.ev.on('labels.edit',        e => console.log('EDIT ', JSON.stringify(e)))
+sock.ev.on('labels.association', e => console.log('ASSOC', JSON.stringify(e)))
+
+await sock.addLabel(jid, { id: LABEL, name: 'Tes', color: 1 })
+try {
+  await sock.addChatLabel(jid, LABEL)        // jangan ditelan error-nya
+  console.log('addChatLabel selesai tanpa error')
+} catch (err) {
+  console.error('addChatLabel GAGAL:', err)
+}
+```
 
 ### 12.6 Level rendah
 
@@ -1744,21 +1827,12 @@ Sebelumnya `Store/make-in-memory-store.js` memakai `require('@adiwajshing/keyed-
 
 ### 15.3 Handler yang tidak ter-route
 
-`detectType` mengenali `statusMentionMessage`, `orderMessage`, `groupStatus`, dan `stickerPack`, tetapi `switch` di `sendMessage` tidak punya `case` untuk keempatnya.
-
-- ✅ `orderMessage` / `groupStatus` / `statusMentionMessage` lewat `sendMessage` jatuh ke jalur standar dan gagal dengan **`Invalid media type`**.
+`detectType` mengenali `statusMentionMessage`, `orderMessage`, `groupStatus`, dan `stickerPack`. ✅ **SUDAH DIPERBAIKI** — `orderMessage` dan `groupStatus` kini punya `case` di `sendMessage`. `statusMentionMessage` masih jatuh ke jalur standar dan gagal dengan **`Invalid media type`** (pakai `sendStatusMentions`).
 - `stickerPack` tetap berfungsi karena jalur standar mendukungnya ([11.10](#1110-sticker-pack)).
-- ✅ `handleStickerPack` memanggil `utils.prepareStickerPackMessage`, yang **tidak ada** → `TypeError`. Gunakan `stickerPack` standar.
-- `handleStMention` berisi bug (`media` tidak dideklarasikan, `mediaType` adalah `const` yang diubah, `target` tidak terdefinisi, dan `this.user` tidak ada di kelas `hydra`) sehingga akan error. Gunakan `sendStatusMentions`.
+- ✅ **SUDAH DIPERBAIKI** — `handleStickerPack` kini didelegasikan ke `generateWAMessage` (jalur standar `stickerPack`), tidak lagi memanggil `prepareStickerPackMessage` yang tidak ada.
+- ✅ **SUDAH DIPERBAIKI** — `handleStMention` ditulis ulang mengikuti alur `sendStatusMentions` (variabel tak terdefinisi, `const` yang di-assign ulang, `msg.key` dari id string, dan typo `addtionalNodes`). Method ini tetap belum punya `case` di `sendMessage`; `sendStatusMentions` tetap cara yang direkomendasikan.
 
-Usulan untuk meroute dua yang berguna, di `switch` pada `messages-send.js`:
-
-```js
-case 'ORDER':
-    return await kelvdra.handleOrderMessage(content, jid, quoted);
-case 'GROUP_STATUS':
-    return await kelvdra.handleGroupStory(content, jid, quoted);
-```
+Implementasi route (sudah terpasang di `switch` pada `messages-send.js`): `ORDER` mengembalikan WAMessage dari `handleOrderMessage`; `GROUP_STATUS` menolak jid non-grup dan membungkus id hasil `handleGroupStory` menjadi `{ key, message, messageTimestamp }`. `handleOrderMessage` juga kini me-relay dengan `messageId` yang sama dengan key pesan yang dikembalikan.
 
 ### 15.4 `handlePollResult` wajib `newsletter`
 
@@ -1766,7 +1840,7 @@ case 'GROUP_STATUS':
 
 ### 15.5 Perbaikan kecil di `sendStatusMentions`
 
-Fungsi ini memakai `link_preview_1.getUrlInfo` dan `axiosOptions` yang tidak terdefinisi di file tersebut. Efeknya kecil (error tertangkap dan link preview pada status teks dilewati), tetapi mudah diperbaiki:
+✅ **SUDAH DIPERBAIKI** — `link_preview_1`/`axiosOptions` diganti `getUrlInfo`/`httpRequestOptions`, `WABinary_1.isJidUser` (tidak diekspor, membuat notifikasi mention gagal diam-diam) diganti pengecekan grup, dan `cachedGroupMetadata` kini opsional dengan fallback `groupMetadata`. Bentuk perbaikan link preview:
 
 ```js
 getUrlInfo: text => getUrlInfo(text, {
@@ -1795,9 +1869,9 @@ Metadata "diteruskan dari channel" atau info bisnis yang tidak sesuai kenyataan 
 ### 15.7 Catatan kecil lain
 
 - **Tipe TypeScript** (`.d.ts`) belum mencakup `sendStatusMentions`, `sendAlbumMessage`, `kelvdra`, serta key `carouselMessage`, `interactiveMessage`, `productMessage`, dst. Pengguna TS perlu casting (`(sock as any).sendStatusMentions(…)`) atau tambahan deklarasi.
-- **Tipe tanpa implementasi:** `Types/Message.d.ts` mendeklarasikan `shop`, `cards`, `order`, `pollResult`, `keep`, `call`, `adminInvite`, `paymentInvite`, tetapi tidak ada handler-nya di `generateWAMessageContent` (memakai key itu berujung `Invalid media type`). Untuk carousel dan poll result gunakan gaya hydra; untuk order gunakan `handleOrderMessage` manual.
-- **`collection`:** kondisi footer terbalik (`'footer' in message && !message.footer`), sehingga `footer` yang Anda isi tidak pernah dipakai. Seharusnya `!!message.footer`.
-- **`templateButtons`:** cabangnya baru aktif bila `message` memiliki key `template` (bukan hanya `templateButtons`), dan pada varian media terdapat `Object.assign(msg, m)` dengan `msg` yang tidak terdefinisi. Anggap fitur ini eksperimental; ✅ dengan `template: true` + `text`, uji offline menghasilkan `templateMessage`.
+- **Tipe tanpa implementasi:** `Types/Message.d.ts` mendeklarasikan `shop`, `cards`, `order`, `pollResult`, `keep`, `call`, `adminInvite`, `paymentInvite`, tetapi tidak ada handler-nya di `generateWAMessageContent` (memakai key itu berujung `Invalid media type`). Untuk carousel dan poll result gunakan gaya hydra; untuk order gunakan `orderMessage` (ter-route ke `handleOrderMessage`).
+- **`collection`:** ✅ **SUDAH DIPERBAIKI** — kondisi footer yang terbalik kini `!!message.footer`.
+- **`templateButtons`:** cabangnya baru aktif bila `message` memiliki key `template` (bukan hanya `templateButtons`), dan pada varian media terdapat `Object.assign(msg, m)` dengan `msg` yang tidak terdefinisi. ✅ **SUDAH DIPERBAIKI** — cabang kini aktif cukup dengan `templateButtons`, dan varian media memakai `Object.assign(hydratedTemplate, m)`. Tetap uji di perangkat penerima.
 - **`interactiveButtons` + media:** implementasi menempelkan objek media ke dalam `interactiveMessage` dan ke `header` dengan `Object.assign`. Cara ini lazim di banyak fork, tetapi sebaiknya diuji di perangkat penerima.
 - **`README.md`** memakai `printQRInTerminal: true` yang sudah tidak berfungsi ([2.2](#22-printqrinterminal-sudah-tidak-berfungsi)).
 - **`package.json`**: `homepage` dan `repository` masih menunjuk ke `WhiskeySockets/Baileys`.

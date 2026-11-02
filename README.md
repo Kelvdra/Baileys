@@ -4,7 +4,7 @@
 
 Fork [Baileys (WhiskeySockets)](https://github.com/WhiskeySockets/Baileys) yang dimodifikasi oleh **Kelvdra**: klien WhatsApp Web *multi-device* berbasis WebSocket (tanpa browser/Selenium), dengan tambahan fitur pesan interaktif, builder pesan, VoIP, dan sejumlah utilitas anti-ban / anti-memory-leak.
 
-![version](https://img.shields.io/badge/version-1.0.6-blue)
+![version](https://img.shields.io/badge/version-1.0.7-blue)
 ![node](https://img.shields.io/badge/node-%E2%89%A5%2020-green)
 ![module](https://img.shields.io/badge/module-ESM-yellow)
 ![license](https://img.shields.io/badge/license-MIT-lightgrey)
@@ -279,8 +279,8 @@ Publish ke npm berjalan otomatis lewat GitHub Actions ketika tag berawalan `v` d
 
 ```bash
 # naikkan "version" di package.json terlebih dahulu
-git tag v1.0.6
-git push origin v1.0.6
+git tag v1.0.7
+git push origin v1.0.7
 ```
 
 ## Dokumentasi Lengkap
@@ -299,8 +299,8 @@ Kalau library ini berguna, kamu bisa mendukung pengembangannya lewat salah satu 
 
 | Platform | Link |
 | --- | --- |
-| Saweria | [saweria.co/USERNAME_KAMU](https://saweria.co/USERNAME_KAMU) |
-| Trakteer | [trakteer.id/USERNAME_KAMU](https://trakteer.id/USERNAME_KAMU) |
+| Saweria | [saweria.co/hydraa87](https://saweria.co/hydraa87) |
+| Trakteer | [trakteer.id/cyxiao](https://trakteer.id/cyxiao) |
 
 ## Penafian
 

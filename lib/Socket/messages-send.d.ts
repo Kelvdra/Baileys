@@ -2,6 +2,7 @@ import { Boom } from '@hapi/boom';
 import { proto } from '../../WAProto/index.js';
 import type { AnyMessageContent, MediaConnInfo, MessageReceiptType, MessageRelayOptions, MiscMessageGenerationOptions, SocketConfig, WAMessage, WAMessageKey } from '../Types/index.js';
 import { MessageRetryManager } from '../Utils/index.js';
+import type hydra from './hydra.js';
 import { type BinaryNode, type JidWithDevice } from '../WABinary/index.js';
 import { USyncQuery } from '../WAUSync/index.js';
 export declare const makeMessagesSocket: (config: SocketConfig) => {
@@ -26,6 +27,31 @@ export declare const makeMessagesSocket: (config: SocketConfig) => {
     })[]>;
     messageRetryManager: MessageRetryManager | null;
     updateMediaMessage: (message: WAMessage) => Promise<WAMessage>;
+    /** Added from @kelvdra/baileys: akses langsung ke semua handler hydra (carousel, order, groupStatus, dst). */
+    kelvdra: hydra;
+    /** Host media saat ini (dari media_conn). */
+    getMediaHost: () => string;
+    issuePrivacyTokens: (jids: string[], timestamp?: number | string) => Promise<any>;
+    /** Ubah label anggota di grup; mengembalikan id pesan. */
+    updateMemberLabel: (jid: string, memberLabel: string) => Promise<string>;
+    /**
+     * Added from @kelvdra/baileys: posting status (teks/gambar/video/audio) dan memberi notifikasi mention
+     * ke `jids` (user atau grup). Mengembalikan pesan status yang dibuat.
+     */
+    sendStatusMentions: (content: AnyMessageContent, jids?: string[]) => Promise<WAMessage>;
+    /** Added from @kelvdra/baileys: kirim album (minimal 2 media berisi `image` atau `video`). `options.delay` = jeda antar media (ms, default 500). */
+    sendAlbumMessage: (jid: string, medias: Array<{
+        image?: any;
+        video?: any;
+        caption?: string;
+        [key: string]: any;
+    }>, options?: {
+        delay?: number;
+        quoted?: WAMessage;
+        [key: string]: any;
+    }) => Promise<WAMessage>;
+    /** Added from @kelvdra/baileys: kirim AIRich. `content` boleh instance AIRich, fungsi builder `(ai) => void`, atau objek shorthand. */
+    sendAIRich: (jid: string, content: any, options?: Record<string, any>) => Promise<any>;
     sendHTML: (jid: string, html: string | Buffer, options?: {
         /** Teks fallback gelembung chat (default: title) */
         text?: string;
