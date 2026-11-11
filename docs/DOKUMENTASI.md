@@ -1967,3 +1967,17 @@ const lid = await sock.getLidForJid('62812xxxx@s.whatsapp.net')
 - `makeInMemoryStore` sebelumnya error di mode ESM (`require`, `Defaults_1`, `Utils_1`, dll tidak terdefinisi, dan butuh `@adiwajshing/keyed-db` yang tidak ada di dependencies). Sekarang memakai `KeyedDB` lokal (`lib/Store/keyed-db.js`) tanpa dependency tambahan.
 - Store baru punya batas pesan per chat: `makeInMemoryStore({ maxMessagesPerChat: 500 })` (default 500, `0` = tanpa batas).
 - `contacts.update` untuk kontak yang tidak dikenal tidak lagi menghentikan update kontak berikutnya di batch yang sama.
+
+
+## Pemakaian di CommonJS (`require`)
+
+Library ini ES Module, tetapi `lib/index.cjs` + `exports` di `package.json` membuat `require()` berjalan (butuh **Node.js ≥ 20.19 atau ≥ 22.12**; cek dengan `node -v`).
+
+```js
+// semua gaya ini valid
+const makeWASocket = require('@kelvdra/baileys')
+const { default: makeWASocket, DisconnectReason, useMultiFileAuthState } = require('@kelvdra/baileys')
+const { makeWASocket, jidNormalizedUser } = require('@kelvdra/baileys')
+```
+
+Di Node yang lebih lama, `require()` akan melempar error yang jelas; gunakan `const baileys = await import('@kelvdra/baileys')`.

@@ -28,14 +28,25 @@
   },
   "license": "MIT",
   "author": "Kelvdra",
-  "main": "lib/index.js",
+  "main": "lib/index.cjs",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib/index.cjs",
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json",
+    "./*": "./*"
+  },
   "types": "lib/index.d.ts",
   "files": [
-    "lib/**/*.js",
     "lib/**/*.d.ts",
     "lib/**/*.json",
     "WAProto/**/*",
-    "engine-requirements.js"
+    "engine-requirements.js",
+    "lib/**/*.js",
+    "lib/**/*.cjs"
   ],
   "dependencies": {
     "@cacheable/node-cache": "^1.4.0",
