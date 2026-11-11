@@ -33,6 +33,7 @@ declare class hydra {
     /** Kirim video sebagai motion (GIF-like); dipanggil sendMessage saat `{ video, motion: true }`. */
     handleMotion(content: any, jid: string, quoted: any): Promise<any>;
     handleOrderMessage(content: any, jid: string, quoted: any): Promise<any>;
+    sendOrderPay(jid: string, order: any, quoted?: any): Promise<any>;
     /** Mengembalikan id pesan (string). Lewat sendMessage hasilnya dibungkus jadi { key, message }. */
     handleGroupStory(content: { groupStatus: Record<string, any> }, jid: string, quoted?: any): Promise<string>;
     /** Shorthand handler for `sock.sendMessage(jid, { aiRich: { ... } })`, builds an AIRich instance under the hood. */

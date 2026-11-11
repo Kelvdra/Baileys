@@ -434,7 +434,30 @@ export type KelvdraMessageContent = {
         orderTitle?: string;
         totalAmount1000?: number;
         totalCurrencyCode?: string;
+        /** Default: ID acak. Sebelumnya di-hardcode. */
+        orderId?: string;
+        sellerJid?: string;
+        token?: string;
+        status?: string;
+        surface?: string;
         [key: string]: any;
+    };
+} | {
+    /** Kartu order + tombol "Review and pay" (cta_url) + salin kode bayar. Pembayaran diproses gateway Anda. */
+    orderPay: {
+        orderId?: string;
+        title?: string;
+        items: Array<{ name: string; qty?: number; price: number }>;
+        currency?: string;
+        thumbnail?: string | Buffer;
+        /** Link halaman bayar (QRIS/Midtrans/Xendit/dll). Wajib salah satu dari paymentUrl / paymentCode. */
+        paymentUrl?: string;
+        paymentCode?: string;
+        paymentCodeLabel?: string;
+        buttonText?: string;
+        note?: string;
+        footer?: string;
+        extraButtons?: Array<{ name: string; buttonParamsJson: string }>;
     };
 } | {
     /** Status grup (groupStatusMessageV2). Hanya untuk jid grup. Audio otomatis ptt kecuali `ptt: false`. */

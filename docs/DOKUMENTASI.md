@@ -969,6 +969,21 @@ await sock.kelvdra.handleOrderMessage({
   }
 }, jid, m)
 
+// Order + "Review and pay" (tiruan tampilan; bayar lewat link gateway Anda)
+await sock.sendMessage(jid, {
+  orderPay: {
+    title: 'Jasper\'s Market',
+    items: [{ name: 'Bushel of carrots', qty: 1, price: 12340 }],
+    currency: 'IDR',
+    thumbnail: 'https://…/produk.jpg',
+    paymentUrl: 'https://pay.example.com/inv/123',   // QRIS / Midtrans / Xendit / Tripay
+    paymentCode: '8808123456789',                    // opsional: tombol salin kode / VA
+    footer: 'Bayar sebelum 24 jam'
+  }
+}, { quoted: m })
+// Setelah webhook gateway "paid": kirim sock.sendMessage(jid, { text: 'Pembayaran diterima ✅' })
+// `orderId`, `sellerJid`, `token`, `status` di orderMessage kini bisa diisi (sebelumnya di-hardcode).
+
 // Status grup (groupStatusMessageV2)
 await sock.kelvdra.handleGroupStory(
   { groupStatus: { image: { url: 'https://…/banner.jpg' }, caption: 'Pengumuman' } },

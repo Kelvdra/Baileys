@@ -1,22 +1,5 @@
 name: Publish to npm
 
-# File ini: .github/workflows/main.yml
-#
-# Cara rilis:
-#   1. Ubah "version" di package.json, misalnya 1.0.6-rc.7
-#   2. git commit -am "release: 1.0.6-rc.7"
-#   3. git tag v1.0.6-rc.7
-#   4. git push origin main --tags
-#
-# Prasyarat: secret repo NPM_TOKEN (npm automation / granular token dengan hak publish).
-#
-# Provenance (badge "Built and signed on GitHub Actions" di npmjs.com) butuh SEMUA ini:
-#   - permissions id-token: write            (OIDC untuk menandatangani via Sigstore)
-#   - npm publish --provenance               (atau NPM_CONFIG_PROVENANCE=true)
-#   - runner GitHub-hosted (ubuntu-latest), repo GitHub PUBLIK, npm CLI >= 9.5
-#   - package.json "repository.url" cocok dengan repo ini
-# Hanya versi yang dipublish dari workflow ini yang mendapat provenance (versi lama tidak).
-
 on:
   push:
     tags:
